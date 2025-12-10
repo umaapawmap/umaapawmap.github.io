@@ -52,7 +52,7 @@ nav a {
 .hero {
     flex: 1 0 0;
     display: flex;
-    min-height: 100vh;
+    overflow: hidden;
     background: url("/assets/images/landing_bg.jpg") center/cover no-repeat;
     position: relative;
     align-items: center;
