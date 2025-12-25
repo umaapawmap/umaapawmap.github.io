@@ -1,7 +1,3 @@
-#map {
-    height: 100vh;
-}
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -25,6 +21,12 @@ body {
   color: #fff;
 }
 
+#map {
+  flex: 1;
+  height: 100%;
+}
+
+/* ICONS */
 .icon-row {
   display: flex;
   justify-content: space-between;
@@ -34,7 +36,6 @@ body {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: #0b5a8f;
   border: 3px solid #f9b233;
   display: flex;
   align-items: center;
@@ -42,6 +43,7 @@ body {
   font-size: 22px;
 }
 
+/* SEARCH */
 .search {
   padding: 12px;
   border-radius: 12px;
@@ -50,53 +52,29 @@ body {
   color: #fff;
 }
 
-.search::placeholder {
-  color: #cce5ff;
-}
-
-.menu button {
+/* MENU */
+.menu button,
+.filter-btn {
   width: 100%;
   padding: 14px;
-  margin-bottom: 12px;
-  background: #084b78;
-  border: 2px solid #fff;
   border-radius: 14px;
+  border: 2px solid #fff;
+  background: #084b78;
   color: #fff;
   font-size: 16px;
   cursor: pointer;
 }
 
-.menu button:hover {
-  background: #0e6fb0;
+.menu button {
+  margin-bottom: 12px;
 }
 
 .spacer {
   flex: 1;
 }
 
-.filter-btn {
-  padding: 14px;
-  border-radius: 14px;
-  border: 2px solid #fff;
-  background: #084b78;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-/* MAIN CONTENT */
-.content {
-  flex: 1;
-  background: #fff;
-}
-
 @media (max-width: 768px) {
   .sidebar {
     width: 220px;
-  }
-
-  .icon {
-    width: 48px;
-    height: 48px;
   }
 }
