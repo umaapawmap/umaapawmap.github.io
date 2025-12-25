@@ -19,6 +19,26 @@
         />
     </head>
     <body>
+         <aside class="sidebar">
+    <div class="icon-row">
+      <div class="icon">📍</div>
+      <div class="icon">💬</div>
+      <div class="icon">ℹ️</div>
+    </div>
+
+    <input type="text" class="search" placeholder="Search..." />
+
+    <nav class="menu">
+      <button>Evacuation Zones</button>
+      <button>Hospitals</button>
+      <button>Under Construction</button>
+    </nav>
+
+    <div class="spacer"></div>
+
+    <button class="filter-btn">Zone Filtering</button>
+  </aside>
+
         <div id="map"></div>
 
         <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
