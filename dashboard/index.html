@@ -1,25 +1,26 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Dashboard</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
 
-        <link
-            rel="stylesheet"
-            href="../assets/css/map.css?v={{ site.github.build_revision }}"
-        />
-        <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
-        />
-        <link
-            rel="stylesheet"
-            href="https://unpkg.com/leaflet/dist/leaflet.css"
-        />
-    </head>
-    <body>
-         <aside class="sidebar">
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
+  />
+
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet/dist/leaflet.css"
+  />
+
+  <link rel="stylesheet" href="../assets/css/map.css" />
+</head>
+
+<body>
+
+  <aside class="sidebar">
     <div class="icon-row">
       <div class="icon">📍</div>
       <div class="icon">💬</div>
@@ -39,25 +40,27 @@
     <button class="filter-btn">Zone Filtering</button>
   </aside>
 
-        <div id="map"></div>
+  <div class="calendar-panel">
+    <div class="calendar">
+      <div class="calendar-header">
+        <button id="prevMonth">◀</button>
+        <span id="monthYear"></span>
+        <button id="nextMonth">▶</button>
+      </div>
 
-        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-        <script>
-            const map = L.map("map").setView([0, 0], 2);
+      <div class="calendar-grid">
+        <span>Sun</span><span>Mon</span><span>Tue</span>
+        <span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+      </div>
 
-            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-                maxZoom: 18
-            }).addTo(map);
+      <div class="calendar-days" id="calendarDays"></div>
+    </div>
+  </div>
 
-            const geojsonURL = "../assets/data/contours.geojson";
+  <div id="map"></div>
 
-            fetch(geojsonURL)
-                .then(r => r.json())
-                .then(data => {
-                    const layer = L.geoJSON(data).addTo(map);
-                    map.fitBounds(layer.getBounds());
-                })
-                .catch(err => console.error("Error loading GeoJSON:", err));
-        </script>
-    </body>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <script src="../assets/js/map.js"></script>
+</body>
 </html>
