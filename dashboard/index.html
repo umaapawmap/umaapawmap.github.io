@@ -1,74 +1,114 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Dashboard</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Dashboard — Olongapo Flood Map</title>
 
         <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
         />
-
         <link
             rel="stylesheet"
             href="https://unpkg.com/leaflet/dist/leaflet.css"
         />
-
         <link rel="stylesheet" href="../assets/css/map.css" />
     </head>
-
     <body>
         <button
             id="togglePanelsBtn"
             class="toggle-btn"
+            type="button"
             aria-pressed="false"
-            title="Hide side panel and calendar"
+            aria-controls="sidebar calendarPanel"
+            title="Toggle side panel and calendar"
         >
             ☰
         </button>
-        <aside class="sidebar">
-            <div class="icon-row">
+
+        <aside id="sidebar" class="sidebar" aria-label="Controls">
+            <div class="icon-row" aria-hidden="true">
                 <div class="icon">📍</div>
                 <div class="icon">💬</div>
                 <div class="icon">ℹ️</div>
             </div>
 
-            <input type="text" class="search" placeholder="Search..." />
+            <input
+                id="searchBox"
+                class="search"
+                type="search"
+                placeholder="Search..."
+            />
 
-            <nav class="menu">
-                <button>Evacuation Zones</button>
-                <button>Hospitals</button>
-                <button>Under Construction</button>
+            <nav class="menu" aria-label="Map layers">
+                <button type="button" data-layer="zones">
+                    Evacuation Zones
+                </button>
+                <button type="button" data-layer="hospitals">Hospitals</button>
+                <button type="button" data-layer="construction">
+                    Under Construction
+                </button>
             </nav>
 
-            <div class="spacer"></div>
+            <div class="spacer" role="presentation"></div>
 
-            <button class="filter-btn">Zone Filtering</button>
+            <button
+                id="filterBtn"
+                class="filter-btn"
+                type="button"
+                aria-expanded="false"
+            >
+                Zone filtering
+            </button>
         </aside>
 
-        <div class="calendar-panel">
-            <div class="calendar">
+        <div
+            id="calendarPanel"
+            class="calendar-panel"
+            aria-label="Date selector"
+        >
+            <div
+                class="calendar"
+                role="application"
+                aria-roledescription="calendar"
+            >
                 <div class="calendar-header">
-                    <button id="prevMonth">◀</button>
-                    <span id="monthYear"></span>
-                    <button id="nextMonth">▶</button>
+                    <button
+                        id="prevMonth"
+                        type="button"
+                        aria-label="Previous month"
+                    >
+                        ◀
+                    </button>
+                    <span id="monthYear" aria-live="polite"></span>
+                    <button
+                        id="nextMonth"
+                        type="button"
+                        aria-label="Next month"
+                    >
+                        ▶
+                    </button>
                 </div>
 
-                <div class="calendar-grid">
-                    <span>Sun</span><span>Mon</span><span>Tue</span>
-                    <span>Wed</span><span>Thu</span><span>Fri</span
+                <div class="calendar-grid" aria-hidden="true">
+                    <span>Sun</span><span>Mon</span><span>Tue</span
+                    ><span>Wed</span><span>Thu</span><span>Fri</span
                     ><span>Sat</span>
                 </div>
 
-                <div class="calendar-days" id="calendarDays"></div>
+                <div
+                    id="calendarDays"
+                    class="calendar-days"
+                    role="grid"
+                    tabindex="0"
+                ></div>
             </div>
         </div>
 
-        <div id="map"></div>
+        <main id="map" role="region" aria-label="Map"></main>
 
         <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-        <script src="../assets/js/map.js"></script>
+        <script src="../assets/js/map.js" defer></script>
     </body>
 </html>
