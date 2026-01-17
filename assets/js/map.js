@@ -1,86 +1,37 @@
 document.addEventListener("DOMContentLoaded", () => {
-    /* MAP */
-    const OLONGAPO = { lat: 14.8395, lng: 120.2826 };
-    const GEOJSON_PATH = "../assets/data/contours.geojson";
-    const map = L.map("map", { preferCanvas: true }).setView(
-        [OLONGAPO.lat, OLONGAPO.lng],
-        12
-    );
+    const mapCenter = [14.862697, 120.327579];
+    const map = L.map("map", {
+        preferCanvas: true,
+        center: mapCenter
+    }).setView(mapCenter, 13);
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        maxZoom: 19,
+        // This is a legal requirement for OSM License; Do not remove
         attribution: "&copy; OpenStreetMap contributors"
     }).addTo(map);
 
-    fetch(GEOJSON_PATH)
-        .then(res => {
-            if (!res.ok) throw new Error(`HTTP ${res.status}`);
-            return res.json();
-        })
-        .then(geojson => {
-            function detectHeightProp(feature) {
-                const p = feature.properties || {};
-                for (const key of [
-                    "flood_height",
-                    "flood",
-                    "elevation",
-                    "height",
-                    "elev",
-                    "avg_elev"
-                ]) {
-                    if (p.hasOwnProperty(key)) return key;
+    fetch("../assets/data/barangays.geojson")
+        .then(r => r.json())
+        .then(data => {
+            const layer = L.geoJSON(data, {
+                style: {
+                    color: "#2563eb",
+                    weight: 1,
+                    fillOpacity: 0.4
+                },
+                onEachFeature: (feature, layer) => {
+                    layer.bindTooltip(feature.properties.ADM4_EN, {
+                        sticky: true
+                    });
+                    layer.on({
+                        mouseover: e => e.target.setStyle({ fillOpacity: 0.7 }),
+                        mouseout: e => e.target.setStyle({ fillOpacity: 0.4 })
+                    });
                 }
-                for (const k of Object.keys(p)) {
-                    if (typeof p[k] === "number") return k;
-                }
-                return null;
-            }
-
-            const sample =
-                Array.isArray(geojson.features) && geojson.features[0];
-            const heightProp = sample ? detectHeightProp(sample) : null;
-
-            const styleFn = feat => {
-                const val = heightProp ? +feat.properties[heightProp] : NaN;
-                let fill = "#00bcd4";
-                if (!Number.isFinite(val)) fill = "#88c0d0";
-                else if (val > 6) fill = "#ff4d4f";
-                else if (val > 3) fill = "#ffa500";
-                return {
-                    color: fill,
-                    fillColor: fill,
-                    fillOpacity: 0.45,
-                    weight: 1
-                };
-            };
-
-            const onEach = (feature, layer) => {
-                const props = feature.properties || {};
-                const title = props.name || props.zone || "Zone";
-                const height = heightProp ? props[heightProp] : "N/A";
-                layer.bindPopup(
-                    `<strong>${title}</strong><br/>Height: ${height}`
-                );
-            };
-
-            const layer = L.geoJSON(geojson, {
-                style: styleFn,
-                onEachFeature: onEach
             }).addTo(map);
-
-            // keep map centered by default; fit to geojson bounds if available
-            try {
-                const bounds = layer.getBounds();
-                if (bounds.isValid()) map.fitBounds(bounds.pad(0.1));
-            } catch (e) {
-                // fallback: map stays at default center
-            }
-        })
-        .catch(err => {
-            console.error("GeoJSON load error:", err);
+            map.fitBounds(layer.getBounds());
         });
 
-    /* CALENDAR */
     const monthYear = document.getElementById("monthYear");
     const calendarDays = document.getElementById("calendarDays");
     const prevMonth = document.getElementById("prevMonth");
@@ -96,7 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
             month: "long",
             year: "numeric"
         });
-
         const firstDayIndex = new Date(year, month, 1).getDay();
         const totalDays = new Date(year, month + 1, 0).getDate();
 
@@ -131,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const day = e.target.closest(".day");
         if (!day) return;
         const date = day.dataset.date;
-        // TODO: hook map filtering/time selection here
+        day.focus();
     });
 
     calendarDays.addEventListener("keydown", e => {
@@ -145,13 +95,14 @@ document.addEventListener("DOMContentLoaded", () => {
         current = new Date(current.getFullYear(), current.getMonth() - 1, 1);
         renderCalendar(current);
     });
+
     nextMonth.addEventListener("click", () => {
         current = new Date(current.getFullYear(), current.getMonth() + 1, 1);
         renderCalendar(current);
     });
+
     renderCalendar(current);
 
-    /* UI */
     const toggleBtn = document.getElementById("togglePanelsBtn");
     const sidebar = document.getElementById("sidebar");
     const calendarPanel = document.getElementById("calendarPanel");
@@ -165,7 +116,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".menu button").forEach(btn => {
         btn.addEventListener("click", () => {
             btn.classList.toggle("active");
-            // TODO: implement show/hide layer
         });
     });
 });
