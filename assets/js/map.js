@@ -40,7 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     toggleBtn.addEventListener("click", () => {
         const isOpen = drawer.classList.toggle("open");
-        mapDiv.classList.toggle("dimmed", isOpen);
         toggleBtn.setAttribute("aria-pressed", String(isOpen));
     });
 
@@ -48,7 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     drawerCloseBtn.addEventListener("click", () => {
         drawer.classList.remove("open");
-        mapDiv.classList.remove("dimmed");
         toggleBtn.setAttribute("aria-pressed", "false");
     });
 

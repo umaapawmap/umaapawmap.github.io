@@ -4,8 +4,18 @@
     --accent: #f9b233;
     --white: #fff;
     --drawer-w: 260px;
-    --radius: 12px;
+    --radius: 3px;
     --font: "DM Sans", Arial, sans-serif;
+}
+
+@font-face {
+    font-family: "CocoGothic";
+    src:
+        url("/assets/fonts/CocoGothic.woff2") format("woff2"),
+        url("/assets/fonts/CocoGothic.woff") format("woff"),
+        url("/assets/fonts/CocoGothic.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
 }
 
 * {
@@ -104,10 +114,6 @@ body {
     inset: 0;
     z-index: 1;
     transition: filter 0.3s ease;
-}
-
-.dimmed {
-    filter: brightness(0.6);
 }
 
 .calendar-panel {
