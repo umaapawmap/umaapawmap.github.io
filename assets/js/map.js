@@ -85,4 +85,81 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     updateTab();
+
+    const monthYear = document.getElementById("monthYear");
+    const calendarDays = document.getElementById("calendarDays");
+    const prevMonth = document.getElementById("prevMonth");
+    const nextMonth = document.getElementById("nextMonth");
+
+    let current = new Date();
+
+    function renderCalendar(date) {
+        calendarDays.innerHTML = "";
+        const year = date.getFullYear();
+        const month = date.getMonth();
+        monthYear.textContent = date.toLocaleDateString("en-US", {
+            month: "long",
+            year: "numeric"
+        });
+        const firstDayIndex = new Date(year, month, 1).getDay();
+        const totalDays = new Date(year, month + 1, 0).getDate();
+
+        for (let i = 0; i < firstDayIndex; i++) {
+            const empty = document.createElement("div");
+            empty.className = "empty";
+            calendarDays.appendChild(empty);
+        }
+
+        const today = new Date();
+        for (let d = 1; d <= totalDays; d++) {
+            const cell = document.createElement("div");
+            cell.tabIndex = 0;
+            cell.className = "day";
+            cell.dataset.date = `${year}-${String(month + 1).padStart(
+                2,
+                "0"
+            )}-${String(d).padStart(2, "0")}`;
+            cell.textContent = d;
+            if (
+                d === today.getDate() &&
+                month === today.getMonth() &&
+                year === today.getFullYear()
+            ) {
+                cell.classList.add("today");
+            }
+            calendarDays.appendChild(cell);
+        }
+    }
+
+    calendarDays.addEventListener("click", e => {
+        const day = e.target.closest(".day");
+        if (!day || day.classList.contains("empty")) return;
+
+    document.querySelectorAll(".calendar-days .day.selected").forEach(d => {
+            d.classList.remove("selected");
+        });
+
+        day.classList.add("selected");
+
+        day.focus();
+    });
+
+    calendarDays.addEventListener("keydown", e => {
+        if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            e.target.click();
+        }
+    });
+
+    prevMonth.addEventListener("click", () => {
+        current = new Date(current.getFullYear(), current.getMonth() - 1, 1);
+        renderCalendar(current);
+    });
+
+    nextMonth.addEventListener("click", () => {
+        current = new Date(current.getFullYear(), current.getMonth() + 1, 1);
+        renderCalendar(current);
+    });
+
+    renderCalendar(current);
 });

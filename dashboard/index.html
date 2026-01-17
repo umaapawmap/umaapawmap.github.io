@@ -34,29 +34,29 @@
                     />
                 </div>
                 <div class="tab-pane" data-tab="info"></div>
-                <div class="tab-pane" data-tab="calendar"></div>
+                <div class="tab-pane" data-tab="calendar">
+                    <div class="calendar">
+                        <div class="calendar-header">
+                            <button id="prevMonth" aria-label="Previous month">
+                                ◀
+                            </button>
+                            <div id="monthYear"></div>
+                            <button id="nextMonth" aria-label="Next month">
+                                ▶
+                            </button>
+                        </div>
+                        <div class="calendar-grid">
+                            <span>Sun</span><span>Mon</span><span>Tue</span
+                            ><span>Wed</span><span>Thu</span><span>Fri</span
+                            ><span>Sat</span>
+                        </div>
+                        <div id="calendarDays" class="calendar-days"></div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div id="map"></div>
-
-        <div id="calendarPanel" class="calendar-panel hidden">
-            <div class="calendar">
-                <div class="calendar-header">
-                    <button id="prevMonth" aria-label="Previous month">
-                        ◀
-                    </button>
-                    <div id="monthYear"></div>
-                    <button id="nextMonth" aria-label="Next month">▶</button>
-                </div>
-                <div class="calendar-grid">
-                    <span>Sun</span><span>Mon</span><span>Tue</span
-                    ><span>Wed</span> <span>Thu</span><span>Fri</span
-                    ><span>Sat</span>
-                </div>
-                <div id="calendarDays" class="calendar-days"></div>
-            </div>
-        </div>
 
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
         <script src="../assets/js/map.js"></script>

@@ -169,3 +169,80 @@ body {
     color: var(--white);
     outline: none;
 }
+
+.tab-pane .calendar {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 12px;
+    color: #333;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: "DM Sans", Arial, sans-serif;
+}
+
+.tab-pane .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--blue-900);
+}
+
+.tab-pane .calendar-header button {
+    background: var(--blue-900);
+    color: var(--white);
+    border: none;
+    border-radius: 6px;
+    padding: 4px 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.tab-pane .calendar-header button:hover {
+    background: var(--blue-800);
+}
+
+.tab-pane .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 6px;
+}
+
+.tab-pane .calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    gap: 4px;
+}
+
+.tab-pane .calendar-days .day {
+    padding: 6px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    font-size: 14px;
+}
+
+.tab-pane .calendar-days .day:hover {
+    background: var(--blue-100);
+}
+
+.tab-pane .calendar-days .day.selected {
+    background: var(--blue-900);
+    color: var(--white);
+    font-weight: 700;
+}
+
+.tab-pane .calendar-days .today {
+    background: var(--accent);
+    color: var(--blue-900);
+    font-weight: 700;
+}
+
+.tab-pane .calendar-days .empty {
+    background: transparent;
+}
