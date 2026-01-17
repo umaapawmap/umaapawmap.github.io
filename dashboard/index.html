@@ -11,31 +11,36 @@
         <link rel="stylesheet" href="../assets/css/map.css" />
     </head>
     <body>
-        <button id="togglePanelsBtn" class="toggle-btn" aria-pressed="false">
+        <button id="toggleDrawerBtn" class="toggle-btn" aria-pressed="false">
             ☰
         </button>
-        <aside id="sidebar" class="sidebar">
-            <div class="icon-row">
-                <div class="icon">📍</div>
-                <div class="icon">💬</div>
-                <div class="icon">ℹ️</div>
+
+        <div id="drawer" class="drawer">
+            <button id="drawerCloseBtn" class="drawer-close">✕</button>
+            <div class="drawer-header">Menu</div>
+
+            <div class="tab-bar">
+                <button id="tabLeft" class="tab-arrow hidden">◀</button>
+                <div id="tabLabel" class="tab-label">Layers</div>
+                <button id="tabRight" class="tab-arrow">▶</button>
             </div>
-            <input
-                class="search"
-                placeholder="Search location"
-                aria-label="Search location"
-            />
-            <div class="menu">
-                <button type="button">Evacuation Zones</button>
-                <button type="button">Hospitals</button>
-                <button type="button">Under Construction</button>
+
+            <div class="tab-content" id="tabContent">
+                <div class="tab-pane active" data-tab="layers">
+                    <input
+                        class="search"
+                        placeholder="Search location"
+                        aria-label="Search location"
+                    />
+                </div>
+                <div class="tab-pane" data-tab="info"></div>
+                <div class="tab-pane" data-tab="calendar"></div>
             </div>
-            <div class="spacer"></div>
-        </aside>
+        </div>
 
         <div id="map"></div>
 
-        <div id="calendarPanel" class="calendar-panel">
+        <div id="calendarPanel" class="calendar-panel hidden">
             <div class="calendar">
                 <div class="calendar-header">
                     <button id="prevMonth" aria-label="Previous month">
@@ -46,7 +51,7 @@
                 </div>
                 <div class="calendar-grid">
                     <span>Sun</span><span>Mon</span><span>Tue</span
-                    ><span>Wed</span><span>Thu</span><span>Fri</span
+                    ><span>Wed</span> <span>Thu</span><span>Fri</span
                     ><span>Sat</span>
                 </div>
                 <div id="calendarDays" class="calendar-days"></div>
