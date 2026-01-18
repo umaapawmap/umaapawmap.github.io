@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
         preferCanvas: true,
         center: mapCenter,
         zoom: 12.5,
-        minZoom: 12.5
+        minZoom: 12.5,
+        zoomControl: false
     }).setView(mapCenter, 13);
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -66,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
     } else {
         console.error("Geolocation is not supported by this browser");
-    };
+    }
 
     const toggleBtn = document.getElementById("toggleDrawerBtn");
     const drawer = document.getElementById("drawer");
@@ -196,4 +197,81 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     renderCalendar(current);
+
+    const daySlider = document.getElementById("daySlider");
+    const dayPointer = document.getElementById("dayPointer");
+
+    let pointerDate = new Date();
+
+    function generateDaySlider(
+        centerDate = new Date(),
+        pastDays = 7,
+        futureDays = 7
+    ) {
+        daySlider.querySelectorAll(".day-item").forEach(d => d.remove());
+        const totalDays = pastDays + futureDays + 1;
+        const start = new Date(centerDate);
+        start.setDate(centerDate.getDate() - pastDays);
+
+        const todayStr = new Date().toISOString().split("T")[0];
+
+        for (let i = 0; i < totalDays; i++) {
+            const d = new Date(start);
+            d.setDate(start.getDate() + i);
+
+            const item = document.createElement("div");
+            item.className = "day-item";
+            item.dataset.date = d.toISOString().split("T")[0];
+
+            if (item.dataset.date === todayStr) item.classList.add("today");
+
+            const weekday = document.createElement("div");
+            weekday.className = "day-label-weekday";
+            weekday.textContent = d.toLocaleDateString("en-US", {
+                weekday: "short"
+            });
+
+            const monthDay = document.createElement("div");
+            monthDay.className = "day-label-date";
+            monthDay.textContent = d.toLocaleDateString("en-US", {
+                month: "short",
+                day: "numeric"
+            });
+
+            item.appendChild(weekday);
+            item.appendChild(monthDay);
+
+            daySlider.appendChild(item);
+        }
+
+        updateSelectedDay();
+    }
+
+    function updateSelectedDay() {
+        const items = Array.from(daySlider.querySelectorAll(".day-item"));
+        const sliderRect = daySlider.getBoundingClientRect();
+        const pointerX = sliderRect.left + sliderRect.width / 2;
+
+        let closestItem = null;
+        let minDist = Infinity;
+        items.forEach(item => {
+            const itemRect = item.getBoundingClientRect();
+            const itemCenter = itemRect.left + itemRect.width / 2;
+            const dist = Math.abs(pointerX - itemCenter);
+            if (dist < minDist) {
+                minDist = dist;
+                closestItem = item;
+            }
+        });
+
+        items.forEach(i => i.classList.remove("selected"));
+        if (closestItem) {
+            closestItem.classList.add("selected");
+            pointerDate = new Date(closestItem.dataset.date);
+        }
+    }
+
+    daySlider.addEventListener("scroll", updateSelectedDay);
+
+    generateDaySlider(new Date(), 7, 7);
 });

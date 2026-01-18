@@ -1,10 +1,12 @@
 :root {
-    --blue-900: #0b5a8f;
-    --blue-800: #084b78;
+    --blue-1: #0e71b3;
+    --blue-2: #0b5a8f;
+    --blue-3: #084b78;
     --accent: #f9b233;
     --white: #fff;
     --drawer-w: 260px;
     --radius: 3px;
+    --day-slider-fade-width: 48px;
     --font: "DM Sans", Arial, sans-serif;
 }
 
@@ -52,7 +54,7 @@ body {
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 4px 0px rgba(0, 0, 0, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -64,7 +66,7 @@ body {
     left: 0;
     width: var(--drawer-w);
     height: 100%;
-    background: var(--blue-900);
+    background: var(--blue-2);
     color: var(--white);
     padding: 16px;
     z-index: 1250;
@@ -101,7 +103,7 @@ body {
     padding: 12px;
     border-radius: 14px;
     border: 2px solid var(--white);
-    background: var(--blue-800);
+    background: var(--blue-3);
     color: var(--white);
     font-size: 15px;
     cursor: pointer;
@@ -165,7 +167,7 @@ body {
     padding: 12px;
     border-radius: var(--radius);
     border: 2px solid var(--white);
-    background: var(--blue-800);
+    background: var(--blue-3);
     color: var(--white);
     outline: none;
 }
@@ -185,11 +187,11 @@ body {
     align-items: center;
     margin-bottom: 8px;
     font-weight: 600;
-    color: var(--blue-900);
+    color: var(--blue-2);
 }
 
 .tab-pane .calendar-header button {
-    background: var(--blue-900);
+    background: var(--blue-2);
     color: var(--white);
     border: none;
     border-radius: 6px;
@@ -200,7 +202,7 @@ body {
 }
 
 .tab-pane .calendar-header button:hover {
-    background: var(--blue-800);
+    background: var(--blue-3);
 }
 
 .tab-pane .calendar-grid {
@@ -223,7 +225,9 @@ body {
     padding: 6px;
     border-radius: 6px;
     cursor: pointer;
-    transition: background 0.2s, color 0.2s;
+    transition:
+        background 0.2s,
+        color 0.2s;
     font-size: 14px;
 }
 
@@ -232,17 +236,89 @@ body {
 }
 
 .tab-pane .calendar-days .day.selected {
-    background: var(--blue-900);
+    background: var(--blue-2);
     color: var(--white);
     font-weight: 700;
 }
 
 .tab-pane .calendar-days .today {
     background: var(--accent);
-    color: var(--blue-900);
+    color: var(--blue-2);
     font-weight: 700;
 }
 
 .tab-pane .calendar-days .empty {
     background: transparent;
+}
+
+.day-slider {
+    position: fixed;
+    bottom: var(--day-slider-bottom, 24px);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    overflow-x: auto;
+    background: var(--blue-2);
+    border-radius: 3px;
+    height: var(--day-slider-height, 64px);
+    width: 95%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 0;
+    scrollbar-width: none;
+    z-index: 1200;
+}
+
+.day-slider::-webkit-scrollbar {
+    display: none;
+}
+
+.day-slider .day-item {
+    flex: 0 0 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    text-align: center;
+}
+
+.day-slider .day-item:first-child {
+    border-left: none;
+}
+
+.day-slider .day-label-weekday {
+    font-weight: bold;
+    font-size: 14px;
+    color: #fff;
+}
+
+.day-slider .day-label-date {
+    font-size: 14px;
+    color: #fff;
+}
+
+.day-slider .day-item.selected {
+    outline: 2px solid var(--accent);
+    outline-offset: -2px;
+    border-radius: 3px;
+}
+
+.day-slider .day-item.today {
+    background: var(--blue-1);
+}
+
+.day-pointer {
+    position: fixed;
+    bottom: calc(var(--day-slider-bottom, 24px) + var(--day-slider-height, 64px) - 10px); 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: auto;
+    z-index: 1300;
+    pointer-events: none;
+    display: block !important;
 }
