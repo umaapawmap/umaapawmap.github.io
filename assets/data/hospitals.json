@@ -1,0 +1,499 @@
+[{
+  "title": "Allied Care Experts (ACE) Medical Center - Baypointe, Inc.",
+  "location": {
+    "lat": 14.8238888,
+    "lng": 120.2721641
+  },
+  "address": "Block 8, Lot 1A and 1B Dewey Avenue Subic Bay Freeport Zone, Olongapo City, 2222 Zambales, Philippines",
+  "categoryName": "General hospital",
+  "city": "Olongapo City"
+},
+{
+  "title": "James L. Gordon Memorial Hospital",
+  "location": {
+    "lat": 14.8267698,
+    "lng": 120.280075
+  },
+  "address": "1 Perimeter Rd, Olongapo City, Zambales, Philippines",
+  "categoryName": "Medical Center",
+  "city": "Olongapo City"
+},
+{
+  "title": "Ridon's St. Jude Medical Center",
+  "location": {
+    "lat": 14.836203,
+    "lng": 120.286596
+  },
+  "address": "60 & #62 E 18th St, Olongapo City, 2200 Zambales, Philippines",
+  "categoryName": "General hospital",
+  "city": "Olongapo City"
+},
+{
+  "title": "Gordon Heights Rural Health Unit",
+  "location": {
+    "lat": 14.8734562,
+    "lng": 120.2938032
+  },
+  "address": "V7FV+9GM, Olongapo City, 2200 Zambales, Philippines",
+  "categoryName": "General practitioner",
+  "city": "Olongapo City"
+},
+{
+  "title": "Marikit Park Covered Court",
+  "location": {
+    "lat": 14.8961351,
+    "lng": 120.378138
+  },
+  "address": "Whole Court, Prk 7, Subic, Zambales, Philippines",
+  "categoryName": "Basketball court",
+  "city": "Subic"
+},
+{
+  "title": "ZMMG COOP Hospital",
+  "location": {
+    "lat": 14.8390452,
+    "lng": 120.2827523
+  },
+  "address": "14 Brill St, Olongapo City, 2200 Zambales, Philippines",
+  "categoryName": "Hospital",
+  "city": "Olongapo City"
+},
+{
+  "title": "Ulticare Medical Center",
+  "location": {
+    "lat": 14.8467772,
+    "lng": 120.2686404
+  },
+  "address": "2 National Highway, Olongapo City, 2200 Zambales, Philippines",
+  "categoryName": "Medical Center",
+  "city": "Olongapo City"
+},
+{
+  "title": "Zambales Medical Mission Group Hospital & Health Services Cooperative",
+  "location": {
+    "lat": 14.8424302,
+    "lng": 120.2851747
+  },
+  "address": "18 Grill Street, Olongapo City, 2200 Zambales, Philippines",
+  "categoryName": "Hospital",
+  "city": "Olongapo City"
+},
+{
+  "title": "Afable Medical Center",
+  "location": {
+    "lat": 14.8387577,
+    "lng": 120.284818
+  },
+  "address": "4, Afable Medical Center, Afable St, Olongapo City, 2200 Zambales, Philippines",
+  "categoryName": "Hospital",
+  "city": "Olongapo City"
+},
+{
+  "title": "Calapatia Polymedic Hospital Plaza",
+  "location": {
+    "lat": 14.8426954,
+    "lng": 120.2886553
+  },
+  "address": "11 E 24th St, Olongapo City, Zambales, Philippines",
+  "categoryName": "Hospital",
+  "city": "Olongapo City"
+},
+{
+  "title": "Mother And Child Hospital",
+  "location": {
+    "lat": 14.8302047,
+    "lng": 120.2868751
+  },
+  "address": "75 Kessing St, Olongapo City, 2200 Zambales, Philippines",
+  "categoryName": "Hospital",
+  "city": "Olongapo City"
+},
+{
+  "title": "Infinity Health Clinic",
+  "location": {
+    "lat": 14.8389547,
+    "lng": 120.2862954
+  },
+  "address": "30-A Canda St, Olongapo City, Zambales, Philippines",
+  "categoryName": "Hospital",
+  "city": "Olongapo City"
+},
+{
+  "title": "Subic Dispensary",
+  "location": {
+    "lat": 14.8210828,
+    "lng": 120.2769863
+  },
+  "address": "R7CG+CQQ, Dewey Ave, Subic Bay Freeport Zone, Zambales, Philippines",
+  "categoryName": "Hospital",
+  "city": "Subic Bay Freeport Zone"
+},
+{
+  "title": "San Narciso Health Center",
+  "location": {
+    "lat": 14.82769,
+    "lng": 120.279889
+  },
+  "address": "104 Rizal Avenue Extension, Olongapo City, 2200 Zambales, Philippines",
+  "categoryName": "Hospital",
+  "city": "Olongapo City"
+},
+{
+  "title": "Out-Patient Department - Baypointe Hospital and Medical Center",
+  "location": {
+    "lat": 14.823915,
+    "lng": 120.27228
+  },
+  "address": "Block 8, Lot 1A and 1B, Unihealth, Baypointe Hospital and Medical Center, Dewey Avenue, CBD Area, Subic Bay Freeport Zone, Subic, 2222, Philippines",
+  "categoryName": "General practitioner",
+  "city": "Subic"
+},
+{
+  "title": "Emergency Service Department - Baypointe Hospital and Medical Center",
+  "location": {
+    "lat": 14.823915,
+    "lng": 120.27228
+  },
+  "address": "Block 8, Lot 1-A and 1-B, Unihealth, Baypointe Hospital and Medical Center, Dewey Avenue, CBD Area, Subic Bay Freeport Zone, Subic, 2209, Philippines",
+  "categoryName": "General practitioner",
+  "city": "Subic"
+},
+{
+  "title": "James L Gordon Memorial Hospital - OPD",
+  "location": {
+    "lat": 14.8268949,
+    "lng": 120.2796068
+  },
+  "address": "65 Rizal Avenue Extension, Olongapo City, 2200 Zambales, Philippines",
+  "categoryName": "Hospital",
+  "city": "Olongapo City"
+},
+{
+  "title": "Borough Medical",
+  "location": {
+    "lat": 14.8247204,
+    "lng": 120.2788675
+  },
+  "address": "Level 1, Rizal Hwy, Subic Bay Freeport Zone, Zambales, Philippines",
+  "categoryName": "Medical clinic",
+  "city": "Subic Bay Freeport Zone"
+},
+{
+  "title": "Laceda Medical Clinic",
+  "location": {
+    "lat": 14.8227422,
+    "lng": 120.2833839
+  },
+  "address": "Portion of B-494 Remy Field Compound CBD Area Subic Bay Freeport Zone, 2200 Zambales, Philippines",
+  "categoryName": "Medical clinic",
+  "city": "Olongapo City"
+},
+{
+  "title": "Subic Heart Center",
+  "location": {
+    "lat": 14.82769,
+    "lng": 120.279889
+  },
+  "address": "104 Rizal Avenue Extension, Olongapo City, 2200 Zambales, Philippines",
+  "categoryName": "Medical Center",
+  "city": "Olongapo City"
+},
+{
+  "title": "Perpetual Help Medical Clinic",
+  "location": {
+    "lat": 14.835717,
+    "lng": 120.287494
+  },
+  "address": "R7PP+7XQ, E 18th St, Olongapo City, 2200 Zambales, Philippines",
+  "categoryName": "Skin care clinic",
+  "city": "Olongapo City"
+},
+{
+  "title": "RSJMC Medical Arts Building",
+  "location": {
+    "lat": 14.8372065,
+    "lng": 120.2857528
+  },
+  "address": "65 E 18th St, Olongapo City, 2200 Zambales, Philippines",
+  "categoryName": "Private hospital",
+  "city": "Olongapo City"
+},
+{
+  "title": "MEDOCare Health Systems, Inc",
+  "location": {
+    "lat": 14.8228064,
+    "lng": 120.2824529
+  },
+  "address": "One Stop Shop, Lot 7 Aguinaldo St, central district, Subic Bay Freeport Zone, Zambales, Philippines",
+  "categoryName": "Medical Center",
+  "city": "Subic Bay Freeport Zone"
+},
+{
+  "title": "CITI Orthopaedics",
+  "location": {
+    "lat": 14.8175851,
+    "lng": 120.283092
+  },
+  "address": "Rm 212, OPD, Baypointe Hospital, Dewey Ave, Subic Bay Freeport, Olongapo City, 2200 Zambales, Philippines",
+  "categoryName": "Orthopedic clinic",
+  "city": "Olongapo City"
+},
+{
+  "title": "Orario Birthing Home",
+  "location": {
+    "lat": 14.831207,
+    "lng": 120.287578
+  },
+  "address": "79-A Kessing St, Olongapo City, 2200 Zambales, Philippines",
+  "categoryName": "Pediatric clinic",
+  "city": "Olongapo City"
+},
+{
+  "title": "The Permanente Health Plan. Multi-Specialty Health Plan",
+  "location": {
+    "lat": 14.8542392,
+    "lng": 120.2925211
+  },
+  "address": "Lot 19, Blk 7 Salcedo St, Olongapo City, 2200 Zambales, Philippines",
+  "categoryName": "Health insurance agency",
+  "city": "Olongapo City"
+},
+{
+  "title": "Sto. Rosario Maternity And Medical Clinic",
+  "location": {
+    "lat": 14.8388979,
+    "lng": 120.2875613
+  },
+  "address": "18 E 20th St, Olongapo City, Zambales, Philippines",
+  "categoryName": "Hospital",
+  "city": "Olongapo City"
+},
+{
+  "title": "Jo Anne Ramos, MD@James L. Gordon Memorial Hospital",
+  "location": {
+    "lat": 14.8263537,
+    "lng": 120.2809465
+  },
+  "address": "1 Perimeter Rd, Olongapo City, 2200 Zambales, Philippines",
+  "categoryName": "Hospital",
+  "city": "Olongapo City"
+},
+{
+  "title": "Medical Clinics",
+  "location": {
+    "lat": 14.8527972,
+    "lng": 120.2953251
+  },
+  "address": "2200 Santa Rita St, Subic Bay Freeport Zone, Olongapo City, Zambales, Philippines",
+  "categoryName": "Hospital",
+  "city": "Olongapo City"
+},
+{
+  "title": "Trinity Healthcare Services, Inc. (Cocolife) - James L. Gordon Memorial Hospital",
+  "location": {
+    "lat": 14.8264902,
+    "lng": 120.2801243
+  },
+  "address": "1 Perimeter Rd, Olongapo City, 2200 Zambales, Philippines",
+  "categoryName": "Hospital",
+  "city": "Olongapo City"
+},
+{
+  "title": "ST. MARGARET LYING IN CLINIC",
+  "location": {
+    "lat": 14.8355568,
+    "lng": 120.2901741
+  },
+  "address": "74-A E 20th St, Olongapo City, Zambales, Philippines",
+  "categoryName": "Birth center",
+  "city": "Olongapo City"
+},
+{
+  "title": "Divine Spirit Healthcare Centre",
+  "location": {
+    "lat": 14.846646,
+    "lng": 120.290898
+  },
+  "address": "342 Sta. Rita Rd, Olongapo City, 2200 Zambales, Philippines",
+  "categoryName": "Walk-in clinic",
+  "city": "Olongapo City"
+},
+{
+  "title": "KCSG Healthcare",
+  "location": {
+    "lat": 14.8329686,
+    "lng": 120.2853627
+  },
+  "address": "50 - 14th St, corner Gallagher Street, Olongapo City, 2200 Zambales, Philippines",
+  "categoryName": "Medical clinic",
+  "city": "Olongapo City"
+},
+{
+  "title": "ST. AGNES POLYMEDIC AND CENTER FOR DIABETES CARE",
+  "location": {
+    "lat": 14.8406829,
+    "lng": 120.2849774
+  },
+  "address": "15 W 20th St, Olongapo City, 2200 Zambales, Philippines",
+  "categoryName": "Walk-in clinic",
+  "city": "Olongapo City"
+},
+{
+  "title": "Olongapo City Medical Society Office",
+  "location": {
+    "lat": 14.8272681,
+    "lng": 120.2798954
+  },
+  "address": "R7GH+WX2 James L. Gordon Memorial Hospital, Olongapo City, Zambales, Philippines",
+  "categoryName": "Association / Organization",
+  "city": "Olongapo City"
+},
+{
+  "title": "FamilyCare",
+  "location": {
+    "lat": 14.8282349,
+    "lng": 120.2840146
+  },
+  "address": "Ground Flr, Ma'am Olives Hotel, 18 Kessing St, Olongapo City, 2200 Zambales, Philippines",
+  "categoryName": "Medical clinic",
+  "city": "Olongapo City"
+},
+{
+  "title": "Dra. Anne Marie Langit",
+  "location": {
+    "lat": 14.8308526,
+    "lng": 120.2865949
+  },
+  "address": "30 E 12th St, Olongapo City, Zambales, Philippines",
+  "categoryName": "Medical Center",
+  "city": "Olongapo City"
+},
+{
+  "title": "HIV Treatment Hub: JLGMH",
+  "location": {
+    "lat": 14.8265731,
+    "lng": 120.2803213
+  },
+  "address": "R7GJ+J4G James L. Gordon Memorial Hospital, Perimeter Rd, Olongapo City, Zambales, Philippines",
+  "categoryName": "Hospital",
+  "city": "Olongapo City"
+},
+{
+  "title": "SM City Olongapo Downtown",
+  "location": {
+    "lat": 14.8264573,
+    "lng": 120.2831319
+  },
+  "address": "Magsaysay Drive, cor Gordon Ave, Olongapo City, 2200 Zambales, Philippines",
+  "categoryName": "Shopping mall",
+  "city": "Olongapo City"
+},
+{
+  "title": "Heart Station Department - Baypointe Hospital and Medical Center",
+  "location": {
+    "lat": 14.8238842,
+    "lng": 120.2720976
+  },
+  "address": "Block 8, Lot 1A and 1B, Unihealth, Baypointe Hospital and Medical Center, Dewey Avenue, CBD Area, Subic Bay Freeport Zone, Subic, 2222, Philippines",
+  "categoryName": "General practitioner",
+  "city": "Subic"
+},
+{
+  "title": "St. Joseph Ambulatory Surgical Center and Pediatric Clinic",
+  "location": {
+    "lat": 14.8317873,
+    "lng": 120.2876778
+  },
+  "address": "83 14th corner Kessing Streets, New Kalalake, Olongapo City, Zambales, Philippines",
+  "categoryName": "General practitioner",
+  "city": "Olongapo City"
+},
+{
+  "title": "Tricare",
+  "location": {
+    "lat": 14.823926,
+    "lng": 120.272252
+  },
+  "address": "1B, De Castro Medical Clinic, Unihealth Baypointe Hospital and Medical Center, Block 8 Lot 1A And, Dewey Ave, Subic, 2209 Zambales, Philippines",
+  "city": "Subic"
+},
+{
+  "title": "Dr. Dennis Jose Reyes Delgado",
+  "location": {
+    "lat": 14.823915,
+    "lng": 120.27228
+  },
+  "address": "R7FC+HW6, Unihealth, Baypointe Hospital and Medical Center, Dewey Avenue, CBD Area, Subic Bay Freeport Zone, Subic, 2222, Philippines",
+  "categoryName": "General practitioner",
+  "city": "Subic"
+},
+{
+  "title": "Marikit Park",
+  "location": {
+    "lat": 14.8374181,
+    "lng": 120.2831809
+  },
+  "address": "R7PM+X77, Hospital Rd, Olongapo City, Zambales, Philippines",
+  "categoryName": "Park",
+  "city": "Olongapo City"
+},
+{
+  "title": "Department of Laboratory Medicine - Baypointe Hospital and Medical Center",
+  "location": {
+    "lat": 14.823915,
+    "lng": 120.27228
+  },
+  "address": "R7FC+HW6, Ground Floor, Unihealth, Baypointe Hospital and Medical Center, Dewey Avenue, CBD Area, Subic Bay Freeport Zone, Subic, 2209, Philippines",
+  "categoryName": "General practitioner",
+  "city": "Subic"
+},
+{
+  "title": "VJ PET DOCTORS",
+  "location": {
+    "lat": 14.8385148,
+    "lng": 120.2820014
+  },
+  "address": "R7QJ+CR2, Brill St, Olongapo City, Zambales, Philippines",
+  "categoryName": "Hospital",
+  "city": "Olongapo City"
+},
+{
+  "title": "Woman's Health Department",
+  "location": {
+    "lat": 14.826669,
+    "lng": 120.2798358
+  },
+  "address": "James Gordon Hospital, Perimeter Rd, Olongapo City, 2200 Zambales, Philippines",
+  "categoryName": "Women's health clinic",
+  "city": "Olongapo City"
+},
+{
+  "title": "Dr. Alberto Mariano Ablang",
+  "location": {
+    "lat": 14.82391,
+    "lng": 120.272258
+  },
+  "address": "R7FC+HW6, OPD Clinic, Baypointe Hospital and Medical Center, Dewey Avenue, Olongapo City, 2200 Zambales, Philippines",
+  "categoryName": "Pediatric clinic",
+  "city": "Olongapo City"
+},
+{
+  "title": "Dialysis Department",
+  "location": {
+    "lat": 14.8275402,
+    "lng": 120.2796139
+  },
+  "address": "R7HH+2R9 James Gordon Hospital, Rizal Avenue Extension, Olongapo City, Zambales, Philippines",
+  "categoryName": "Dialysis center",
+  "city": "Olongapo City"
+},
+{
+  "title": "Intellicare",
+  "location": {
+    "lat": 14.839482,
+    "lng": 120.287246
+  },
+  "address": "15 20tH Street, Olongapo City, 2200 Zambales, Philippines",
+  "categoryName": "Health consultant",
+  "city": "Olongapo City"
+}]

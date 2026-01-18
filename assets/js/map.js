@@ -34,6 +34,40 @@ document.addEventListener("DOMContentLoaded", () => {
             map.setMaxBounds(combinedBounds.pad(0.3));
         });
 
+    let userMarker;
+
+    if (navigator.geolocation) {
+        navigator.geolocation.watchPosition(
+            position => {
+                const lat = position.coords.latitude;
+                const lng = position.coords.longitude;
+
+                if (!userMarker) {
+                    userMarker = L.marker([lat, lng], {
+                        icon: L.icon({
+                            iconUrl:
+                                "https://cdn-icons-png.flaticon.com/512/64/64113.png",
+                            iconSize: [30, 30],
+                            iconAnchor: [15, 30]
+                        })
+                    }).addTo(map);
+                } else {
+                    userMarker.setLatLng([lat, lng]);
+                }
+            },
+            error => {
+                console.error("Geolocation error:", error.message);
+            },
+            {
+                enableHighAccuracy: true,
+                maximumAge: 5000,
+                timeout: 10000
+            }
+        );
+    } else {
+        console.error("Geolocation is not supported by this browser");
+    };
+
     const toggleBtn = document.getElementById("toggleDrawerBtn");
     const drawer = document.getElementById("drawer");
     const mapDiv = document.getElementById("map");
@@ -135,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const day = e.target.closest(".day");
         if (!day || day.classList.contains("empty")) return;
 
-    document.querySelectorAll(".calendar-days .day.selected").forEach(d => {
+        document.querySelectorAll(".calendar-days .day.selected").forEach(d => {
             d.classList.remove("selected");
         });
 
