@@ -208,10 +208,27 @@ document.addEventListener("DOMContentLoaded", () => {
         pastDays = 7,
         futureDays = 7
     ) {
-        daySlider.querySelectorAll(".day-item").forEach(d => d.remove());
+        daySlider
+            .querySelectorAll(".day-item, .spacer")
+            .forEach(d => d.remove());
         const totalDays = pastDays + futureDays + 1;
         const start = new Date(centerDate);
         start.setDate(centerDate.getDate() - pastDays);
+
+        const tempItem = document.createElement("div");
+        tempItem.className = "day-item";
+        tempItem.style.visibility = "hidden";
+        daySlider.appendChild(tempItem);
+        const itemWidth = tempItem.getBoundingClientRect().width;
+        tempItem.remove();
+
+        const sliderWidth = daySlider.getBoundingClientRect().width;
+        const spacerWidth = sliderWidth / 2 - itemWidth / 2;
+
+        const startSpacer = document.createElement("div");
+        startSpacer.className = "spacer";
+        startSpacer.style.flex = `0 0 ${spacerWidth}px`;
+        daySlider.appendChild(startSpacer);
 
         const todayStr = new Date().toISOString().split("T")[0];
 
@@ -244,7 +261,13 @@ document.addEventListener("DOMContentLoaded", () => {
             daySlider.appendChild(item);
         }
 
+        const endSpacer = document.createElement("div");
+        endSpacer.className = "spacer";
+        endSpacer.style.flex = `0 0 ${spacerWidth}px`;
+        daySlider.appendChild(endSpacer);
+
         updateSelectedDay();
+        scrollToCurrentDay();
     }
 
     function updateSelectedDay() {
@@ -273,5 +296,66 @@ document.addEventListener("DOMContentLoaded", () => {
 
     daySlider.addEventListener("scroll", updateSelectedDay);
 
+    function scrollToCurrentDay() {
+        const items = Array.from(daySlider.querySelectorAll(".day-item"));
+        const todayStr = new Date().toISOString().split("T")[0];
+        const todayItem = items.find(i => i.dataset.date === todayStr);
+        if (todayItem) {
+            const sliderRect = daySlider.getBoundingClientRect();
+            const itemRect = todayItem.getBoundingClientRect();
+            const scrollLeft =
+                todayItem.offsetLeft -
+                sliderRect.width / 2 +
+                itemRect.width / 2;
+            daySlider.scrollTo({ left: scrollLeft, behavior: "auto" });
+        }
+    }
+
     generateDaySlider(new Date(), 7, 7);
+    scrollToCurrentDay();
+
+    const waterOverlay = document.getElementById("waterOverlay");
+    let maxMeters = 10.6;
+    let heightMultiplier = 1;
+
+    function setWaterLevel(meters) {
+        meters = Math.min(Math.max(meters, 0), maxMeters);
+        const percent = (meters / maxMeters) * 100 * heightMultiplier;
+        waterOverlay.style.height = percent + "%";
+    }
+
+    setWaterLevel(5);
+
+    const visualizer = document.getElementById("visualizer");
+    const dimOverlay = document.getElementById("dimOverlay");
+
+    let isExpanded = false;
+
+    visualizer.addEventListener("click", () => {
+        if (!isExpanded) {
+            dimOverlay.style.pointerEvents = "auto";
+            dimOverlay.style.background = "rgba(0,0,0,0.5)";
+
+            visualizer.classList.add("visualizer-expanded");
+            isExpanded = true;
+        } else {
+            dimOverlay.style.background = "rgba(0,0,0,0)";
+            dimOverlay.style.pointerEvents = "none";
+
+            visualizer.classList.remove("visualizer-expanded");
+            isExpanded = false;
+        }
+    });
+
+    dimOverlay.addEventListener("click", () => {
+        if (isExpanded) {
+            dimOverlay.style.background = "rgba(0,0,0,0)";
+            dimOverlay.style.pointerEvents = "none";
+
+            visualizer.classList.remove("visualizer-expanded");
+            isExpanded = false;
+        }
+    });
+    
+    
 });
