@@ -12,13 +12,26 @@ document.addEventListener("DOMContentLoaded", () => {
         attribution: "&copy; OpenStreetMap contributors"
     }).addTo(map);
 
+
     let combinedBounds;
+
+    fetch("../assets/data/contours.geojson")
+        .then(r => r.json())
+        .then(data => {
+            const layer = L.geoJSON(data, {
+                style: {
+                    weight: 0.6
+                }
+            }).addTo(map);
+            map.fitBounds(layer.getBounds());
+        })
+        .catch(err => console.error("GeoJSON error:", err))  
 
     fetch("../assets/data/barangays.geojson")
         .then(r => r.json())
         .then(data => {
             const layer = L.geoJSON(data, {
-                style: { color: "#2563eb", weight: 1.5, fillOpacity: 0.4 },
+                style: { color: "#53d42c", weight: 1.5, fillOpacity: 0.4 },
                 onEachFeature: (feature, layer) => {
                     layer.bindTooltip(feature.properties.ADM4_EN, {
                         sticky: true
@@ -34,6 +47,8 @@ document.addEventListener("DOMContentLoaded", () => {
             map.fitBounds(combinedBounds);
             map.setMaxBounds(combinedBounds.pad(0.3));
         });
+
+      
 
     let userMarker;
 
