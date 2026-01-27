@@ -20,7 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(data => {
             const layer = L.geoJSON(data, {
                 style: {
-                    weight: 0.6
+                    weight: 0.4,
+                    color: "#888888"
                 }
             }).addTo(map);
             map.fitBounds(layer.getBounds());
@@ -31,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(r => r.json())
         .then(data => {
             const layer = L.geoJSON(data, {
-                style: { color: "#53d42c", weight: 1.5, fillOpacity: 0.4 },
+                style: { color: "#41d8ab", weight: 1.5, fillOpacity: 0.4 },
                 onEachFeature: (feature, layer) => {
                     layer.bindTooltip(feature.properties.ADM4_EN, {
                         sticky: true
