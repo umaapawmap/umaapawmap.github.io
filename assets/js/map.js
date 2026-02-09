@@ -33,6 +33,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const toggleBtn = document.getElementById("toggleDrawerBtn");
     const drawer = document.getElementById("drawer");
     const drawerCloseBtn = document.getElementById("drawerCloseBtn");
+    const infoPanel = document.getElementById("infoPanel");
+    const infoPanelClose = document.getElementById("infoPanelClose");
+    const infoPanelTitle = document.getElementById("infoPanelTitle");
+    const infoPanelBody = document.getElementById("infoPanelBody");
 
     const tabLabel = document.getElementById("tabLabel");
     const tabLeft = document.getElementById("tabLeft");
@@ -58,6 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let pointerDate = new Date();
     let isExpanded = false;
     let selectedBarangay;
+    let selectedBarangayFeature = null;
     let DAILY_RAIN_MM = null;
     const DEFAULT_VULNERABILITY = 1.0;
 
@@ -274,6 +279,56 @@ document.addEventListener("DOMContentLoaded", () => {
         waterOverlay.style.height = percent + "%";
     }
 
+    function showInfoPanel(barangayName, feature) {
+        infoPanelTitle.textContent = barangayName;
+        
+        let bodyHTML = "";
+        
+        if (DAILY_RAIN_MM !== null) {
+            const floodMeters = computeFloodHeight(DAILY_RAIN_MM, barangayName);
+            bodyHTML += `
+                <div class="info-item">
+                    <div class="info-label">Rainfall (mm)</div>
+                    <div class="info-value">${DAILY_RAIN_MM.toFixed(2)} mm</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Projected Flood Height</div>
+                    <div class="info-value">${floodMeters.toFixed(2)} m</div>
+                </div>
+            `;
+        }
+        
+        if (feature && feature.properties) {
+            if (feature.properties.population) {
+                bodyHTML += `
+                    <div class="info-item">
+                        <div class="info-label">Population</div>
+                        <div class="info-value">${feature.properties.population.toLocaleString()}</div>
+                    </div>
+                `;
+            }
+            if (feature.properties.area) {
+                bodyHTML += `
+                    <div class="info-item">
+                        <div class="info-label">Area (km²)</div>
+                        <div class="info-value">${feature.properties.area.toFixed(2)}</div>
+                    </div>
+                `;
+            }
+        }
+        
+        if (bodyHTML === "") {
+            bodyHTML = '<div class="info-item"><div class="info-value">No data available</div></div>';
+        }
+        
+        infoPanelBody.innerHTML = bodyHTML;
+        infoPanel.classList.add("show");
+    }
+
+    function hideInfoPanel() {
+        infoPanel.classList.remove("show");
+    }
+
     fetch("../assets/data/contours.geojson")
         .then(r => r.json())
         .then(data => {
@@ -298,6 +353,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         click: e => {
                             selectedBarangay = feature.properties.ADM4_EN;
+                            selectedBarangayFeature = feature;
 
                             if (DAILY_RAIN_MM === null) {
                                 alert("Rainfall data not loaded yet.");
@@ -310,6 +366,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             );
 
                             setWaterLevel(floodMeters);
+                            showInfoPanel(selectedBarangay, feature);
                         }
                     });
                 }
@@ -349,6 +406,8 @@ document.addEventListener("DOMContentLoaded", () => {
         drawer.classList.remove("open");
         toggleBtn.setAttribute("aria-pressed", "false");
     });
+
+    infoPanelClose.addEventListener("click", hideInfoPanel);
 
     tabLeft.addEventListener("click", () => {
         if (activeIndex > 0) {
