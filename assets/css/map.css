@@ -7,8 +7,10 @@
     --drawer-w: 260px;
     --radius: 3px;
     --day-slider-fade-width: 48px;
-    --font: "DM Sans", Arial, sans-serif;
+    --font-family: "Roboto", sans-serif;
 }
+
+@import url('https://fonts.googleapis.com');
 
 @font-face {
     font-family: "CocoGothic";
