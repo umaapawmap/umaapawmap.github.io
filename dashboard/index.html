@@ -33,6 +33,22 @@
                         placeholder="Search location"
                         aria-label="Search location"
                     />
+                    <div class="layer-controls">
+                        <label>
+                            <input type="checkbox" id="toggleHistory" />
+                            Show past recorded rainfall
+                        </label>
+                        <label>
+                            <input type="checkbox" id="toggleRealtime" />
+                            Real-time updates
+                        </label>
+                        <div class="last-updated">Last update: <span id="lastUpdated">-</span></div>
+                        <div class="typhoon-control">
+                            <label for="typhoonIntensity">Typhoon intensity</label>
+                            <input id="typhoonIntensity" type="range" min="0" max="100" value="0" />
+                            <div id="typhoonValue">0%</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="tab-pane" data-tab="info"></div>
                 <div class="tab-pane" data-tab="calendar">
@@ -52,6 +68,25 @@
                             ><span>Sat</span>
                         </div>
                         <div id="calendarDays" class="calendar-days"></div>
+                    </div>
+                </div>
+                <div class="tab-pane" data-tab="typhoons">
+                    <div class="typhoon-records">
+                        <label for="historicalTyphoonSelect">Select typhoon event:</label>
+                        <select id="historicalTyphoonSelect" aria-label="Historical typhoon events">
+                            <option value="">-- Choose a typhoon --</option>
+                        </select>
+                        <div id="typhoonDetails" class="typhoon-details" style="margin-top: 15px; display: none;">
+                            <h3 id="typhoonName"></h3>
+                            <p id="typhoonDate"></p>
+                            <div id="typhoonFloodInfo" style="background: #084b78; padding: 10px; border-radius: 4px; margin-top: 10px;">
+                                <p><strong>Peak Flood Height:</strong> <span id="peakFloodHeight">-</span></p>
+                                <p><strong>Peak Rainfall:</strong> <span id="peakRainfall">-</span></p>
+                                <p><strong>Affected Barangays:</strong> <span id="affectedBarangays">-</span></p>
+                                <p id="floodDescription" style="margin-top: 10px; font-size: 0.9em;"></p>
+                            </div>
+                            <button id="viewTyphoonBtn" class="view-btn" style="margin-top: 15px; padding: 8px 12px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">View on Map</button>
+                        </div>
                     </div>
                 </div>
             </div>
