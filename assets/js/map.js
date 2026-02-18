@@ -101,7 +101,10 @@ document.addEventListener("DOMContentLoaded", () => {
             const res = await fetch(url);
             const data = await res.json();
 
-            DAILY_RAIN_MM = data.daily && data.daily.precipitation_sum ? data.daily.precipitation_sum[0] : null;
+            DAILY_RAIN_MM =
+                data.daily && data.daily.precipitation_sum
+                    ? data.daily.precipitation_sum[0]
+                    : null;
             RECORDED_RAIN_MM = null;
             lastFetchedAt = new Date();
             updateLastUpdated(lastFetchedAt);
@@ -111,6 +114,13 @@ document.addEventListener("DOMContentLoaded", () => {
             DAILY_RAIN_MM = null;
             RECORDED_RAIN_MM = null;
         }
+    }
+
+    function getFloodColor(meters) {
+        if (meters <= 0.1) return "#0b9c51"; // Safe / Baseline Green
+        if (meters <= 0.5) return "#ffeb3b"; // Low Risk: Yellow
+        if (meters <= 1.5) return "#ff9800"; // Medium Risk: Orange
+        return "#f44336"; // High Risk: Red
     }
 
     function updateLastUpdated(date) {
@@ -128,18 +138,26 @@ document.addEventListener("DOMContentLoaded", () => {
         realtime = true;
         // immediate fetch
         fetchRainfallForDate(new Date()).then(() => {
-            if (document.getElementById("toggleHistory")?.checked) renderHistoricalMarkers(new Date());
+            if (document.getElementById("toggleHistory")?.checked)
+                renderHistoricalMarkers(new Date());
             if (selectedBarangay && selectedBarangayFeature) {
                 showInfoPanel(selectedBarangay, selectedBarangayFeature);
             }
         });
         realtimeTimer = setInterval(() => {
             fetchRainfallForDate(new Date()).then(() => {
-                if (document.getElementById("toggleHistory")?.checked) renderHistoricalMarkers(new Date());
+                if (document.getElementById("toggleHistory")?.checked)
+                    renderHistoricalMarkers(new Date());
                 if (selectedBarangay && selectedBarangayFeature) {
                     showInfoPanel(selectedBarangay, selectedBarangayFeature);
-                    const predicted = predictRainfall(pointerDate, selectedBarangay);
-                    const floodMeters = computeFloodHeight(predicted, selectedBarangay);
+                    const predicted = predictRainfall(
+                        pointerDate,
+                        selectedBarangay
+                    );
+                    const floodMeters = computeFloodHeight(
+                        predicted,
+                        selectedBarangay
+                    );
                     setWaterLevel(floodMeters);
                 }
             });
@@ -157,23 +175,31 @@ document.addEventListener("DOMContentLoaded", () => {
     function loadHistoricalData() {
         return Promise.all([
             fetch("../assets/data/historical_weather.json").then(r => r.json()),
-            fetch("../assets/data/historical_weather_2025_full.json").then(r => r.json()).catch(() => [])
+            fetch("../assets/data/historical_weather_2025_full.json")
+                .then(r => r.json())
+                .catch(() => [])
         ])
-        .then(([arr2026, arr2025]) => {
-            HISTORICAL_DATA = {};
-            FLOOD_DATA = {};
-            // Load both 2026 and 2025 data
-            [...arr2026, ...arr2025].forEach(item => {
-                HISTORICAL_DATA[item.date] = item.rainfall_mm;
-                if (item.flood_height_m !== undefined) {
-                    FLOOD_DATA[item.date] = item.flood_height_m;
-                }
+            .then(([arr2026, arr2025]) => {
+                HISTORICAL_DATA = {};
+                FLOOD_DATA = {};
+                // Load both 2026 and 2025 data
+                [...arr2026, ...arr2025].forEach(item => {
+                    HISTORICAL_DATA[item.date] = item.rainfall_mm;
+                    if (item.flood_height_m !== undefined) {
+                        FLOOD_DATA[item.date] = item.flood_height_m;
+                    }
+                });
+                console.log(
+                    "✓ Historical data loaded (",
+                    Object.keys(HISTORICAL_DATA).length,
+                    "dates,",
+                    Object.keys(FLOOD_DATA).length,
+                    "flood records )"
+                );
+            })
+            .catch(err => {
+                console.error("Historical data load failed", err);
             });
-            console.log("✓ Historical data loaded (", Object.keys(HISTORICAL_DATA).length, "dates,", Object.keys(FLOOD_DATA).length, "flood records )");
-        })
-        .catch(err => {
-            console.error("Historical data load failed", err);
-        });
     }
 
     function loadTyphoonData() {
@@ -181,7 +207,13 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(r => r.json())
             .then(data => {
                 TYPHOON_DATA = data;
-                console.log("✓ Typhoon data loaded:", data.current?.name, "forecast +", data.historical?.length || 0, "historical");
+                console.log(
+                    "✓ Typhoon data loaded:",
+                    data.current?.name,
+                    "forecast +",
+                    data.historical?.length || 0,
+                    "historical"
+                );
                 renderTyphoonTrack();
                 populateHistoricalTyphoonDropdown();
                 console.log("✓ Typhoon track rendered, dropdown populated");
@@ -194,88 +226,105 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function computeTyphoonIntensity(dateObj) {
         if (!TYPHOON_DATA || !TYPHOON_DATA.current) return 0;
-        
+
         const OLONGAPO_LAT = 14.862697;
         const OLONGAPO_LON = 120.327579;
         const dateStr = dateObj.toISOString().split("T")[0];
-        
+
         // Find forecast point for this date
         const forecast = TYPHOON_DATA.current.forecast;
         let closestPoint = null;
         let minDistance = Infinity;
-        
+
         for (const point of forecast) {
             if (point.date === dateStr) {
                 // Calculate great-circle distance (km)
-                const lat1 = OLONGAPO_LAT * Math.PI / 180;
-                const lat2 = point.latitude * Math.PI / 180;
+                const lat1 = (OLONGAPO_LAT * Math.PI) / 180;
+                const lat2 = (point.latitude * Math.PI) / 180;
                 const dLat = lat2 - lat1;
-                const dLon = (point.longitude - OLONGAPO_LON) * Math.PI / 180;
-                const a = Math.sin(dLat/2)**2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon/2)**2;
+                const dLon = ((point.longitude - OLONGAPO_LON) * Math.PI) / 180;
+                const a =
+                    Math.sin(dLat / 2) ** 2 +
+                    Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) ** 2;
                 const distance = 2 * 6371 * Math.asin(Math.sqrt(a));
-                
+
                 if (distance < minDistance) {
                     minDistance = distance;
                     closestPoint = point;
                 }
             }
         }
-        
+
         if (!closestPoint) return 0;
-        
+
         // Intensity weakens with distance: 100% at 0 km, 0% at 500+ km
         const base_intensity = closestPoint.intensity_percent / 100;
-        const distanceFactor = Math.max(0, 1 - (minDistance / 500));
+        const distanceFactor = Math.max(0, 1 - minDistance / 500);
         return base_intensity * distanceFactor;
     }
 
     function renderTyphoonTrack() {
         if (!TYPHOON_DATA || !TYPHOON_DATA.current) return;
         typhoonLayer.clearLayers();
-        
+
         const forecast = TYPHOON_DATA.current.forecast || [];
         if (forecast.length === 0) return;
-        
+
         // Draw polyline for typhoon track
         const trackPoints = forecast.map(p => [p.latitude, p.longitude]);
         const trackLine = L.polyline(trackPoints, {
-            color: '#ff6b00',
+            color: "#ff6b00",
             weight: 3,
             opacity: 0.8,
-            dashArray: '5,5',
-            lineCap: 'round'
+            dashArray: "5,5",
+            lineCap: "round"
         });
         typhoonLayer.addLayer(trackLine);
-        
+
         // Add markers for significant points
         forecast.forEach((point, idx) => {
-            if (idx % 2 === 0) { // Show every other point to avoid clutter
-                const marker = L.circleMarker([point.latitude, point.longitude], {
-                    radius: 6,
-                    fillColor: point.intensity_percent > 60 ? '#ff0000' : '#ff8800',
-                    color: '#fff',
-                    weight: 2,
-                    opacity: 0.8,
-                    fillOpacity: 0.7
-                });
-                marker.bindPopup(`<b>${TYPHOON_DATA.current.name}</b><br/>${point.date}<br/>${point.category}<br/>Intensity: ${point.intensity_percent}%`);
+            if (idx % 2 === 0) {
+                // Show every other point to avoid clutter
+                const marker = L.circleMarker(
+                    [point.latitude, point.longitude],
+                    {
+                        radius: 6,
+                        fillColor:
+                            point.intensity_percent > 60
+                                ? "#ff0000"
+                                : "#ff8800",
+                        color: "#fff",
+                        weight: 2,
+                        opacity: 0.8,
+                        fillOpacity: 0.7
+                    }
+                );
+                marker.bindPopup(
+                    `<b>${TYPHOON_DATA.current.name}</b><br/>${point.date}<br/>${point.category}<br/>Intensity: ${point.intensity_percent}%`
+                );
                 typhoonLayer.addLayer(marker);
             }
         });
-        
+
         // Ensure layer is visible on map
-        console.log("renderTyphoonTrack: added", forecast.length, "forecast points");
+        console.log(
+            "renderTyphoonTrack: added",
+            forecast.length,
+            "forecast points"
+        );
     }
 
     function populateHistoricalTyphoonDropdown() {
         if (!TYPHOON_DATA || !TYPHOON_DATA.historical) return;
-        
+
         const select = document.getElementById("historicalTyphoonSelect");
         if (!select) return;
-        
+
         TYPHOON_DATA.historical.forEach((typhoon, idx) => {
             const option = document.createElement("option");
-            const label = `${typhoon.name} (${typhoon.year}${typhoon.month ? ' - ' + typhoon.month : ''})`;
+            const label = `${typhoon.name} (${typhoon.year}${
+                typhoon.month ? " - " + typhoon.month : ""
+            })`;
             option.value = idx;
             option.textContent = label;
             select.appendChild(option);
@@ -286,49 +335,54 @@ document.addEventListener("DOMContentLoaded", () => {
         // Update the current month/year to show this date
         current = new Date(targetDate);
         pointerDate = new Date(targetDate);
-        
+
         // Render the calendar for this month
         renderCalendar(current);
-        
+
         // Generate day slider centered on this date
         generateDaySlider(pointerDate, 7, 7);
-        
+
         // Trigger data load for this date
         setTimeout(() => updateSelectedDay(), 100);
-        
+
         console.log("📅 Navigated to", targetDate.toDateString());
     }
 
     function renderHistoricalTyphoonTrack(typhoonIndex) {
         if (!TYPHOON_DATA || !TYPHOON_DATA.historical) return;
-        
+
         const typhoon = TYPHOON_DATA.historical[typhoonIndex];
         if (!typhoon || !typhoon.track) return;
-        
+
         typhoonLayer.clearLayers();
-        
+
         // Draw polyline for historical track
         const trackPoints = typhoon.track.map(p => [p.latitude, p.longitude]);
         const trackLine = L.polyline(trackPoints, {
-            color: '#0066cc',
+            color: "#0066cc",
             weight: 3,
             opacity: 0.7,
-            dashArray: '3,3',
-            lineCap: 'round'
+            dashArray: "3,3",
+            lineCap: "round"
         });
         typhoonLayer.addLayer(trackLine);
-        
+
         // Add markers for all points
         typhoon.track.forEach((point, idx) => {
             const marker = L.circleMarker([point.latitude, point.longitude], {
                 radius: 5,
-                fillColor: point.intensity_percent > 60 ? '#ff0000' : point.intensity_percent > 40 ? '#ff8800' : '#ffcc00',
-                color: '#fff',
+                fillColor:
+                    point.intensity_percent > 60
+                        ? "#ff0000"
+                        : point.intensity_percent > 40
+                        ? "#ff8800"
+                        : "#ffcc00",
+                color: "#fff",
                 weight: 1.5,
                 opacity: 0.8,
                 fillOpacity: 0.7
             });
-            
+
             let popupText = `<b>${typhoon.name}</b><br/>${point.date}<br/>Intensity: ${point.intensity_percent}%`;
             if (point.rainfall_mm) {
                 popupText += `<br/>Rainfall: ${point.rainfall_mm} mm`;
@@ -336,8 +390,14 @@ document.addEventListener("DOMContentLoaded", () => {
             marker.bindPopup(popupText);
             typhoonLayer.addLayer(marker);
         });
-        
-        console.log("renderHistoricalTyphoonTrack: rendered", typhoon.name, "with", typhoon.track.length, "points");
+
+        console.log(
+            "renderHistoricalTyphoonTrack: rendered",
+            typhoon.name,
+            "with",
+            typhoon.track.length,
+            "points"
+        );
     }
 
     function avgLastNDays(dateObj, n = 7) {
@@ -346,7 +406,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const d = new Date(dateObj);
             d.setDate(d.getDate() - i);
             const key = d.toISOString().split("T")[0];
-            if (HISTORICAL_DATA[key] !== undefined) res.push(HISTORICAL_DATA[key]);
+            if (HISTORICAL_DATA[key] !== undefined)
+                res.push(HISTORICAL_DATA[key]);
         }
         if (res.length === 0) return null;
         return res.reduce((a, b) => a + b, 0) / res.length;
@@ -356,14 +417,17 @@ document.addEventListener("DOMContentLoaded", () => {
         const today = new Date();
         // baseline: average of last 7 days if available, otherwise use last known DAILY_RAIN_MM or 2mm
         const avg7 = avgLastNDays(dateObj, 7);
-        let baseline = avg7 ?? (DAILY_RAIN_MM ?? 2);
+        let baseline = avg7 ?? DAILY_RAIN_MM ?? 2;
 
         // simple pattern: weekend/weekday modifier (example)
         const dow = dateObj.getDay();
         const dowFactor = dow === 0 || dow === 6 ? 1.05 : 1.0;
 
         // typhoon influence: amplify baseline by typhoonIntensity (0-1). stronger effect for future dates
-        const futureFactor = dateObj > today ? 1 + typhoonIntensity * 2.5 : 1 + typhoonIntensity * 1.2;
+        const futureFactor =
+            dateObj > today
+                ? 1 + typhoonIntensity * 2.5
+                : 1 + typhoonIntensity * 1.2;
 
         const predicted = baseline * dowFactor * futureFactor;
 
@@ -544,35 +608,39 @@ document.addEventListener("DOMContentLoaded", () => {
         if (closest) {
             closest.classList.add("selected");
             pointerDate = new Date(closest.dataset.date);
-            
-            // Auto-compute typhoon intensity based on date
             typhoonIntensity = computeTyphoonIntensity(pointerDate);
+
             const typhoonValueEl = document.getElementById("typhoonValue");
             if (typhoonValueEl) {
-                typhoonValueEl.textContent = `${Math.round(typhoonIntensity * 100)}%`;
+                typhoonValueEl.textContent = `${Math.round(
+                    typhoonIntensity * 100
+                )}%`;
             }
-            
+
             fetchRainfallForDate(pointerDate).then(() => {
                 renderHistoricalMarkers(pointerDate);
-                // Refresh info panel with new typhoon intensity
+                updateBarangayStyles(); // Added to refresh map colors
                 if (selectedBarangay && selectedBarangayFeature) {
                     showInfoPanel(selectedBarangay, selectedBarangayFeature);
-                    const predicted = predictRainfall(pointerDate, selectedBarangay);
-                    const floodMeters = computeFloodHeight(predicted, selectedBarangay);
+                    const predicted = predictRainfall(
+                        pointerDate,
+                        selectedBarangay
+                    );
+                    const floodMeters = computeFloodHeight(
+                        predicted,
+                        selectedBarangay
+                    );
                     setWaterLevel(floodMeters);
                 }
             });
 
-            // position the pointer image to point at the selected day
             try {
                 const rect = closest.getBoundingClientRect();
-                const center = rect.left + rect.width / 2; // viewport x
+                const center = rect.left + rect.width / 2;
                 if (dayPointer) {
                     dayPointer.style.left = `${center}px`;
                 }
-            } catch (e) {
-                // ignore
-            }
+            } catch (e) {}
         }
     }
 
@@ -599,7 +667,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const sliderRect = daySlider.getBoundingClientRect();
         const itemRect = item.getBoundingClientRect();
-        const scrollLeft = item.offsetLeft - sliderRect.width / 2 + itemRect.width / 2;
+        const scrollLeft =
+            item.offsetLeft - sliderRect.width / 2 + itemRect.width / 2;
         daySlider.scrollTo({ left: scrollLeft, behavior });
     }
 
@@ -611,9 +680,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function showInfoPanel(barangayName, feature) {
         infoPanelTitle.textContent = barangayName;
-        
+
         let bodyHTML = "";
-        
+
         // show recorded or predicted rainfall depending on data and selected date
         const dateStr = pointerDate.toISOString().split("T")[0];
         const recorded = HISTORICAL_DATA[dateStr] ?? null;
@@ -649,10 +718,12 @@ document.addEventListener("DOMContentLoaded", () => {
         bodyHTML += `
             <div class="info-item">
                 <div class="info-label">Typhoon intensity</div>
-                <div class="info-value">${Math.round(typhoonIntensity * 100)}%</div>
+                <div class="info-value">${Math.round(
+                    typhoonIntensity * 100
+                )}%</div>
             </div>
         `;
-        
+
         if (feature && feature.properties) {
             if (feature.properties.population) {
                 bodyHTML += `
@@ -666,16 +737,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 bodyHTML += `
                     <div class="info-item">
                         <div class="info-label">Area (km²)</div>
-                        <div class="info-value">${feature.properties.area.toFixed(2)}</div>
+                        <div class="info-value">${feature.properties.area.toFixed(
+                            2
+                        )}</div>
                     </div>
                 `;
             }
         }
-        
+
         if (bodyHTML === "") {
-            bodyHTML = '<div class="info-item"><div class="info-value">No data available</div></div>';
+            bodyHTML =
+                '<div class="info-item"><div class="info-value">No data available</div></div>';
         }
-        
+
         infoPanelBody.innerHTML = bodyHTML;
         infoPanel.classList.add("show");
     }
@@ -694,15 +768,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
         barangayFeatures.forEach(item => {
             const feature = item.feature;
-            const center = item.centroid || (item.layer ? item.layer.getBounds().getCenter() : null);
+            const center =
+                item.centroid ||
+                (item.layer ? item.layer.getBounds().getCenter() : null);
             if (!center) return;
 
             const recorded = HISTORICAL_DATA[dateStr] ?? null;
-            const predicted = predictRainfall(dateObj, feature.properties.ADM4_EN);
+            const predicted = predictRainfall(
+                dateObj,
+                feature.properties.ADM4_EN
+            );
 
             const value = recorded !== null ? recorded : predicted;
 
-            const color = value >= 20 ? "#800026" : value >= 10 ? "#BD0026" : value >= 5 ? "#E31A1C" : "#FED976";
+            const color =
+                value >= 20
+                    ? "#800026"
+                    : value >= 10
+                    ? "#BD0026"
+                    : value >= 5
+                    ? "#E31A1C"
+                    : "#FED976";
             const radius = Math.min(40, Math.max(4, value * 2));
 
             const circle = L.circleMarker(center, {
@@ -715,7 +801,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             circle.bindPopup(`
                 <strong>${feature.properties.ADM4_EN}</strong><br/>
-                ${recorded !== null ? `Recorded: ${recorded.toFixed(1)} mm` : `Predicted: ${predicted.toFixed(1)} mm`}
+                ${
+                    recorded !== null
+                        ? `Recorded: ${recorded.toFixed(1)} mm`
+                        : `Predicted: ${predicted.toFixed(1)} mm`
+                }
             `);
 
             historicalLayer.addLayer(circle);
@@ -735,7 +825,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(r => r.json())
         .then(data => {
             const layer = L.geoJSON(data, {
-                style: { color: "#0b9c51", weight: 1.2, fillOpacity: 0.3 },
+                style: { color: "#0b9c51", weight: 1.2, fillOpacity: 0.2 },
                 onEachFeature: (feature, layer) => {
                     layer.bindTooltip(feature.properties.ADM4_EN, {
                         sticky: true
@@ -749,9 +839,17 @@ document.addEventListener("DOMContentLoaded", () => {
                             selectedBarangayFeature = feature;
 
                             // use recorded if available for pointerDate, otherwise predict
-                            const dateStr = pointerDate.toISOString().split("T")[0];
+                            const dateStr = pointerDate
+                                .toISOString()
+                                .split("T")[0];
                             const recorded = HISTORICAL_DATA[dateStr] ?? null;
-                            const rainfallForCalc = recorded !== null ? recorded : predictRainfall(pointerDate, selectedBarangay);
+                            const rainfallForCalc =
+                                recorded !== null
+                                    ? recorded
+                                    : predictRainfall(
+                                          pointerDate,
+                                          selectedBarangay
+                                      );
 
                             const floodMeters = computeFloodHeight(
                                 rainfallForCalc,
@@ -769,7 +867,11 @@ document.addEventListener("DOMContentLoaded", () => {
             layer.eachLayer(l => {
                 try {
                     const ctr = l.getBounds().getCenter();
-                    barangayFeatures.push({ feature: l.feature, layer: l, centroid: ctr });
+                    barangayFeatures.push({
+                        feature: l.feature,
+                        layer: l,
+                        centroid: ctr
+                    });
                 } catch (e) {
                     // ignore
                 }
@@ -781,6 +883,110 @@ document.addEventListener("DOMContentLoaded", () => {
             combinedBounds = layer.getBounds();
             map.fitBounds(combinedBounds);
             map.setMaxBounds(combinedBounds.pad(0.3));
+        });
+
+    function getFloodColor(meters) {
+        if (meters >= 1.5) return "#ff0000"; // Red
+        if (meters >= 0.5) return "#ff8800"; // Orange
+        if (meters >= 0.1) return "#ffcc00"; // Yellow
+        return "#0b9c51"; // Default Green (Safe)
+    }
+
+    function updateBarangayStyles() {
+        barangayFeatures.forEach(item => {
+            const name = item.feature.properties.ADM4_EN;
+            const dateStr = pointerDate.toISOString().split("T")[0];
+            const recorded = HISTORICAL_DATA[dateStr] ?? null;
+            const rain =
+                recorded !== null
+                    ? recorded
+                    : predictRainfall(pointerDate, name);
+            const floodMeters = computeFloodHeight(rain, name);
+
+            item.layer.setStyle({
+                fillColor: getFloodColor(floodMeters),
+                color: "#ffffff",
+                weight: 1.5,
+                fillOpacity: 0.6
+            });
+        });
+    }
+
+    fetch("../assets/data/barangays.geojson")
+        .then(r => r.json())
+        .then(data => {
+            const layer = L.geoJSON(data, {
+                style: { color: "#0b9c51", weight: 1.2, fillOpacity: 0.3 },
+                onEachFeature: (feature, layer) => {
+                    layer.bindTooltip(feature.properties.ADM4_EN, {
+                        sticky: true
+                    });
+                    layer.on({
+                        mouseover: e => e.target.setStyle({ fillOpacity: 0.8 }),
+                        mouseout: e => {
+                            const dateStr = pointerDate
+                                .toISOString()
+                                .split("T")[0];
+                            const recorded = HISTORICAL_DATA[dateStr] ?? null;
+                            const rain =
+                                recorded !== null
+                                    ? recorded
+                                    : predictRainfall(
+                                          pointerDate,
+                                          feature.properties.ADM4_EN
+                                      );
+                            const meters = computeFloodHeight(
+                                rain,
+                                feature.properties.ADM4_EN
+                            );
+                            e.target.setStyle({
+                                fillOpacity: 0.6,
+                                fillColor: getFloodColor(meters)
+                            });
+                        },
+                        click: e => {
+                            selectedBarangay = feature.properties.ADM4_EN;
+                            selectedBarangayFeature = feature;
+                            const dateStr = pointerDate
+                                .toISOString()
+                                .split("T")[0];
+                            const recorded = HISTORICAL_DATA[dateStr] ?? null;
+                            const rain =
+                                recorded !== null
+                                    ? recorded
+                                    : predictRainfall(
+                                          pointerDate,
+                                          selectedBarangay
+                                      );
+                            const floodMeters = computeFloodHeight(
+                                rain,
+                                selectedBarangay
+                            );
+                            setWaterLevel(floodMeters);
+                            showInfoPanel(selectedBarangay, feature);
+                        }
+                    });
+                }
+            }).addTo(map);
+
+            barangayFeatures = [];
+            layer.eachLayer(l => {
+                try {
+                    const ctr = l.getBounds().getCenter();
+                    barangayFeatures.push({
+                        feature: l.feature,
+                        layer: l,
+                        centroid: ctr
+                    });
+                } catch (e) {}
+            });
+
+            historicalLayer.addTo(map);
+            combinedBounds = layer.getBounds();
+            map.fitBounds(combinedBounds);
+            map.setMaxBounds(combinedBounds.pad(0.3));
+
+            updateBarangayStyles();
         });
 
     if (navigator.geolocation) {
@@ -880,10 +1086,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // load historical data, then fetch current rainfall and render markers
-    Promise.all([
-        loadHistoricalData(),
-        loadTyphoonData()
-    ]).then(() => {
+    Promise.all([loadHistoricalData(), loadTyphoonData()]).then(() => {
         fetchRainfallForDate(new Date()).then(() => {
             renderHistoricalMarkers(new Date());
         });
@@ -907,7 +1110,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (typhoonSlider) {
         // Typhoon intensity is now auto-calculated from typhoon data
         typhoonSlider.disabled = true;
-        typhoonSlider.title = "Typhoon intensity is auto-calculated based on typhoon track position";
+        typhoonSlider.title =
+            "Typhoon intensity is auto-calculated based on typhoon track position";
         typhoonSlider.addEventListener("input", e => {
             const v = Number(e.target.value || 0);
             if (typhoonValueEl) typhoonValueEl.textContent = `${v}%`;
@@ -924,7 +1128,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // historical typhoon selector
-    const historicalTyphoonSelect = document.getElementById("historicalTyphoonSelect");
+    const historicalTyphoonSelect = document.getElementById(
+        "historicalTyphoonSelect"
+    );
     const typhoonDetails = document.getElementById("typhoonDetails");
     const viewTyphoonBtn = document.getElementById("viewTyphoonBtn");
 
@@ -938,28 +1144,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const typhoonIndex = parseInt(e.target.value);
             const typhoon = TYPHOON_DATA.historical[typhoonIndex];
-            
+
             if (!typhoon) return;
 
             // Display typhoon details
-            document.getElementById("typhoonName").textContent = typhoon.name + (typhoon.year ? ` (${typhoon.year})` : "");
-            document.getElementById("typhoonDate").textContent = 
-                typhoon.track && typhoon.track.length ? 
-                `${typhoon.track[0].date} to ${typhoon.track[typhoon.track.length - 1].date}` : 
-                typhoon.year || "";
+            document.getElementById("typhoonName").textContent =
+                typhoon.name + (typhoon.year ? ` (${typhoon.year})` : "");
+            document.getElementById("typhoonDate").textContent =
+                typhoon.track && typhoon.track.length
+                    ? `${typhoon.track[0].date} to ${
+                          typhoon.track[typhoon.track.length - 1].date
+                      }`
+                    : typhoon.year || "";
 
             if (typhoon.flood_impact) {
                 const impact = typhoon.flood_impact;
-                document.getElementById("peakFloodHeight").textContent = impact.peak_flood_height_m ? `${impact.peak_flood_height_m} m (${impact.peak_date})` : "-";
-                document.getElementById("peakRainfall").textContent = 
-                    typhoon.track ? 
-                    `${Math.max(...typhoon.track.map(p => p.rainfall_mm || 0)).toFixed(1)} mm` : 
-                    "-";
-                document.getElementById("affectedBarangays").textContent = 
-                    impact.affected_barangays ? 
-                    impact.affected_barangays.join(", ") : 
-                    "-";
-                document.getElementById("floodDescription").textContent = impact.description || "";
+                document.getElementById("peakFloodHeight").textContent =
+                    impact.peak_flood_height_m
+                        ? `${impact.peak_flood_height_m} m (${impact.peak_date})`
+                        : "-";
+                document.getElementById("peakRainfall").textContent =
+                    typhoon.track
+                        ? `${Math.max(
+                              ...typhoon.track.map(p => p.rainfall_mm || 0)
+                          ).toFixed(1)} mm`
+                        : "-";
+                document.getElementById("affectedBarangays").textContent =
+                    impact.affected_barangays
+                        ? impact.affected_barangays.join(", ")
+                        : "-";
+                document.getElementById("floodDescription").textContent =
+                    impact.description || "";
             }
 
             typhoonDetails.style.display = "block";
@@ -973,17 +1188,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const typhoonIndex = parseInt(select.value);
             const typhoon = TYPHOON_DATA.historical[typhoonIndex];
-            
+
             if (typhoon && typhoon.track && typhoon.track.length > 0) {
                 // Navigate to the first day of the typhoon
                 const firstDate = new Date(typhoon.track[0].date);
                 navigateToDate(firstDate);
-                console.log("🌀 Viewing", typhoon.name, "starting", firstDate.toDateString());
+                console.log(
+                    "🌀 Viewing",
+                    typhoon.name,
+                    "starting",
+                    firstDate.toDateString()
+                );
             }
-            
+
             // Render the track
             renderHistoricalTyphoonTrack(typhoonIndex);
-            
+
             // Close drawer and zoom to typhoon area
             if (drawer) drawer.classList.remove("open");
             if (toggleBtn) toggleBtn.setAttribute("aria-pressed", "false");

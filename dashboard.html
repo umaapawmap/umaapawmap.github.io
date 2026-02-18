@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Dashboard - Olongapo Flood Map</title>
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        />
+        <link rel="stylesheet" href="/assets/css/map.css" />
+        <link href="https://fonts.googleapis.com" rel="stylesheet" />
+    </head>
+    <body>
+        <button id="toggleDrawerBtn" class="toggle-btn" aria-pressed="false">
+            ☰
+        </button>
+
+        <div id="drawer" class="drawer">
+            <button id="drawerCloseBtn" class="drawer-close">✕</button>
+            <div class="drawer-header">Menu</div>
+
+            <div class="tab-bar">
+                <button id="tabLeft" class="tab-arrow hidden">◀</button>
+                <div id="tabLabel" class="tab-label">Layers</div>
+                <button id="tabRight" class="tab-arrow">▶</button>
+            </div>
+
+            <div class="tab-content" id="tabContent">
+                <div class="tab-pane active" data-tab="layers">
+                    <input
+                        class="search"
+                        placeholder="Search location"
+                        aria-label="Search location"
+                    />
+                    <div class="layer-controls">
+                        <label>
+                            <input type="checkbox" id="toggleHistory" />
+                            Show past recorded rainfall
+                        </label>
+                        <label>
+                            <input type="checkbox" id="toggleRealtime" />
+                            Real-time updates
+                        </label>
+                        <div class="last-updated">
+                            Last update: <span id="lastUpdated">-</span>
+                        </div>
+                        <div class="typhoon-control">
+                            <label for="typhoonIntensity"
+                                >Typhoon intensity</label
+                            >
+                            <input
+                                id="typhoonIntensity"
+                                type="range"
+                                min="0"
+                                max="100"
+                                value="0"
+                            />
+                            <div id="typhoonValue">0%</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" data-tab="info"></div>
+                <div class="tab-pane" data-tab="calendar">
+                    <div class="calendar">
+                        <div class="calendar-header">
+                            <button id="prevMonth" aria-label="Previous month">
+                                ◀
+                            </button>
+                            <div id="monthYear"></div>
+                            <button id="nextMonth" aria-label="Next month">
+                                ▶
+                            </button>
+                        </div>
+                        <div class="calendar-grid">
+                            <span>Sun</span><span>Mon</span><span>Tue</span
+                            ><span>Wed</span><span>Thu</span><span>Fri</span
+                            ><span>Sat</span>
+                        </div>
+                        <div id="calendarDays" class="calendar-days"></div>
+                    </div>
+                </div>
+                <div class="tab-pane" data-tab="typhoons">
+                    <div class="typhoon-records">
+                        <label for="historicalTyphoonSelect"
+                            >Select typhoon event:</label
+                        >
+                        <select
+                            id="historicalTyphoonSelect"
+                            aria-label="Historical typhoon events"
+                        >
+                            <option value="">-- Choose a typhoon --</option>
+                        </select>
+                        <div
+                            id="typhoonDetails"
+                            class="typhoon-details"
+                            style="margin-top: 15px; display: none"
+                        >
+                            <h3 id="typhoonName"></h3>
+                            <p id="typhoonDate"></p>
+                            <div
+                                id="typhoonFloodInfo"
+                                style="
+                                    background: #084b78;
+                                    padding: 10px;
+                                    border-radius: 4px;
+                                    margin-top: 10px;
+                                "
+                            >
+                                <p>
+                                    <strong>Peak Flood Height:</strong>
+                                    <span id="peakFloodHeight">-</span>
+                                </p>
+                                <p>
+                                    <strong>Peak Rainfall:</strong>
+                                    <span id="peakRainfall">-</span>
+                                </p>
+                                <p>
+                                    <strong>Affected Barangays:</strong>
+                                    <span id="affectedBarangays">-</span>
+                                </p>
+                                <p
+                                    id="floodDescription"
+                                    style="margin-top: 10px; font-size: 0.9em"
+                                ></p>
+                            </div>
+                            <button
+                                id="viewTyphoonBtn"
+                                class="view-btn"
+                                style="
+                                    margin-top: 15px;
+                                    padding: 8px 12px;
+                                    background: #007bff;
+                                    color: white;
+                                    border: none;
+                                    border-radius: 4px;
+                                    cursor: pointer;
+                                "
+                            >
+                                View on Map
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="map"></div>
+
+        <div class="slider-container">
+            <img
+                id="dayPointer"
+                class="day-pointer"
+                src="/assets/images/triangle-white.png"
+                alt="pointer"
+            />
+            <div id="daySlider" class="day-slider"></div>
+        </div>
+
+        <div id="visualizer" class="visualizer-window">
+            <img src="/assets/images/vis_bg.png" alt="Visualizer background" />
+            <div id="waterOverlay"></div>
+        </div>
+
+        <div id="dimOverlay"></div>
+
+        <div id="infoPanel" class="info-panel">
+            <button id="infoPanelClose" class="info-panel-close">✕</button>
+            <div class="info-panel-content">
+                <h3 id="infoPanelTitle"></h3>
+                <div id="infoPanelBody"></div>
+            </div>
+        </div>
+
+        <div id="mapLegend" class="map-legend">
+            <div class="legend-header">Flood Risk Levels</div>
+            <div class="legend-item">
+                <span class="legend-color" style="background: #ff0000"></span>
+                <span class="legend-label">1.5m+ (High Risk)</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color" style="background: #ff8800"></span>
+                <span class="legend-label">0.5m - 1.5m (Moderate)</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color" style="background: #ffcc00"></span>
+                <span class="legend-label">0.1m - 0.5m (Low Risk)</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color" style="background: #0b9c51"></span>
+                <span class="legend-label">Below 0.1m (Safe)</span>
+            </div>
+        </div>
+
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <script src="/assets/js/map.js"></script>
+    </body>
+</html>
