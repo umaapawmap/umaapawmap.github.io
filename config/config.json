@@ -1,0 +1,34 @@
+{
+    "map": {
+        "center": [14.862697, 120.327579],
+        "minZoom": 12.5,
+        "startZoom": 13,
+        "maxMeters": 10.6,
+        "heightMultiplier": 1
+    },
+    "floodModel": {
+        "runoffCoefficient": 0.65,
+        "floodableFraction": 0.15,
+        "drainageFactor": 0.75,
+        "defaultVulnerability": 1.0
+    },
+    "vulnerabilityFactors": {
+        "Asinan": 1.2,
+        "Banicain": 1.15,
+        "Barretto": 1.3,
+        "East Bajac-bajac": 1.1,
+        "East Tapinac": 1.1,
+        "Gordon Heights": 0.85,
+        "Kalaklan": 1.0,
+        "Mabayuan": 0.9,
+        "New Cabalan": 1.25,
+        "New Ilalim": 1.3,
+        "New Kababae": 1.1,
+        "New Kalalake": 1.05,
+        "Old Cabalan": 1.2,
+        "Pag-asa": 0.95,
+        "Santa Rita": 1.15,
+        "West Bajac-bajac": 1.15,
+        "West Tapinac": 1.1
+    }
+}

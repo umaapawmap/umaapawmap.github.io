@@ -1,0 +1,63 @@
+.main-header {
+    position: absolute;
+    top: 0;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    padding: 0 20px;
+    background-color: #0b5a8f;
+    color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#menu-toggle {
+    margin-right: 20px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.logo {
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.sidebar {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    z-index: 5000;
+    display: flex;
+    flex-direction: column;
+    width: 280px;
+    height: calc(100% - 60px);
+    background: #fff;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.sidebar.open {
+    transform: translateX(0);
+}
+
+#map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.leaflet-container {
+    width: 100%;
+    height: 100%;
+    outline: 0;
+}
