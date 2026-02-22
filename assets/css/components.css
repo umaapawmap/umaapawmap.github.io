@@ -34,14 +34,28 @@ nav ul li a:hover {
     bottom: 30px;
     left: 50%;
     z-index: 1500;
-    width: 350px;
+    width: 95%;
     height: 80px;
-    overflow: hidden;
+    display: flex;
+    align-items: center;
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(5px);
     transform: translateX(-50%);
+}
+
+.calendar-wrapper {
+    position: absolute;
+    top: -50px;
+    left: 10px;
+    z-index: 2000;
+}
+
+.timeline-track {
+    flex-grow: 1;
+    display: flex;
+    height: 100%;
+    padding: 0 50%;
+    overflow-x: auto;
 }
 
 .center-pointer {
@@ -53,15 +67,6 @@ nav ul li a:hover {
     height: 100%;
     background: #1c6fd0;
     transform: translateX(-50%);
-}
-
-.timeline-track {
-    display: flex;
-    height: 100%;
-    padding: 0 165px;
-    overflow-x: auto;
-    scrollbar-width: none;
-    scroll-snap-type: x mandatory;
 }
 
 .day-slot {
@@ -82,10 +87,8 @@ nav ul li a:hover {
 
 .calendar-wrapper {
     position: absolute;
-    bottom: 120px;
-    left: 50%;
+    left: 10px;
     z-index: 1500;
-    transform: translateX(-175px);
 }
 
 #calendar-btn {

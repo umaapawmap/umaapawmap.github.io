@@ -2,6 +2,8 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
         <title>UMAAPAW Map</title>
         <link
             rel="stylesheet"
@@ -57,14 +59,17 @@
                 </div>
             </aside>
 
-            <!--Calendar Picker-->
-            <div class="calendar-wrapper">
-                <button id="calendar-btn">📅</button>
-                <input type="date" id="calendar-input" style="display: none" />
-            </div>
-
             <!--Timeline-->
             <div class="timeline-container">
+                <!--Calendar Picker-->
+                <div class="calendar-wrapper">
+                    <button id="calendar-btn">📅</button>
+                    <input
+                        type="date"
+                        id="calendar-input"
+                        style="display: none"
+                    />
+                </div>
                 <div class="center-pointer"></div>
                 <div class="timeline-track" id="timeline-track"></div>
             </div>
@@ -90,8 +95,12 @@
                     <div class="ruler-line">2m</div>
                     <div class="ruler-line">1m</div>
                     <div class="ruler-line baseline">0m</div>
-                    
-                    <img src="assets/images/silhouette.png" id="person-silhouette" alt="Person">
+
+                    <img
+                        src="assets/images/silhouette.png"
+                        id="person-silhouette"
+                        alt="Person"
+                    />
                     <div id="water-fill" class="water-overlay"></div>
                 </div>
 
