@@ -38,3 +38,9 @@ export const UI = {
         if (panel) panel.classList.add("hidden");
     }
 };
+
+document.getElementById("legend-toggle").addEventListener("click", function () {
+    const legend = document.getElementById("map-legend");
+    const isCollapsed = legend.classList.toggle("collapsed");
+    this.innerText = isCollapsed ? "i" : "×";
+});

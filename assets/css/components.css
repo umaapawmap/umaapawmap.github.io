@@ -148,19 +148,58 @@ nav ul li a:hover {
     position: fixed;
     bottom: 120px;
     right: 16px;
-    background: #fff;
+    background: white;
     padding: 12px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     z-index: 1200;
-    min-width: 160px;
+    width: 160px; 
+    height: 160px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.map-legend.collapsed {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+}
+
+.map-legend.collapsed #legend-content {
+    display: none;
+}
+
+.legend-toggle-btn {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 22px;
+    height: 22px;
+    border: none;
+    background: #f0f0f0;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.map-legend.collapsed .legend-toggle-btn {
+    width: 100%;
+    height: 100%;
+    right: 0;
+    top: 0;
+    border-radius: 8px;
+    background: white;
 }
 
 .legend-header {
     font-weight: bold;
     font-size: 14px;
     margin-bottom: 8px;
-    color: #003366;
+    color: #0b5a8f;
     border-bottom: 1px solid #eee;
     padding-bottom: 4px;
 }
@@ -179,7 +218,7 @@ nav ul li a:hover {
 .legend-color {
     width: 18px;
     height: 18px;
-    border-radius: 8px;
+    border-radius: 3px;
     border: 1px solid rgba(0,0,0,0.1);
 }
 
