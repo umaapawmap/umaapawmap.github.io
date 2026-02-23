@@ -69,7 +69,7 @@ export const MapManager = {
 
         const spinner = document.getElementById("loading-spinner");
         if (spinner) spinner.classList.remove("hidden");
-        
+
         const promises = [];
 
         geoJsonLayer.eachLayer(layer => {
@@ -84,22 +84,21 @@ export const MapManager = {
 
             promises.push(task);
         });
-        
+
         try {
-        const updates = await Promise.all(promises);
-        updates.forEach(({ layer, color }) => {
-            layer.setStyle({
-                fillColor: color,
-                color: color,
-                fillOpacity: 0.4
+            const updates = await Promise.all(promises);
+            updates.forEach(({ layer, color }) => {
+                layer.setStyle({
+                    fillColor: color,
+                    color: color,
+                    fillOpacity: 0.4
+                });
             });
-        });
-    } catch (err) {
-        console.error(err);
-    } finally {
-        // 2. Hide it when all promises are done
-        if (spinner) spinner.classList.add("hidden"); 
-    }
+        } catch (err) {
+            console.error(err);
+        } finally {
+            if (spinner) spinner.classList.add("hidden");
+        }
 
         const updates = await Promise.all(promises);
 
@@ -131,6 +130,31 @@ export const MapManager = {
 
         UI.show(feature.properties.ADM4_EN, clientX, clientY);
 
+        const heightDisplay = document.getElementById("info-height");
+        
+        if (heightDisplay) {
+            heightDisplay.innerHTML = "Loading...";
+            try {
+                const rawHeight = await fetchRainfallData(
+                    lat,
+                    lng,
+                    State.activeDate
+                );
+                const height = Number(rawHeight);
+
+                if (isNaN(height)) {
+                    heightDisplay.innerHTML = "Flood Height: 0.0m";
+                } else {
+                    heightDisplay.innerHTML = `Flood Height: <strong>${height.toFixed(
+                        1
+                    )}m</strong>`;
+                }
+            } catch (err) {
+                heightDisplay.innerHTML = "Height unavailable";
+                console.log(`Height unavailable: ${err}`);
+            }
+        }
+
         const vizBtn = document.getElementById("visualize-flood-btn");
         vizBtn.onclick = () => {
             Visualizer.open(lat, lng, State.activeDate);
@@ -139,6 +163,11 @@ export const MapManager = {
 };
 
 Timeline.subscribe(newDate => {
+    const panel = document.getElementById("info-panel");
+    if (panel && !panel.classList.contains("hidden")) {
+        UI.hide();
+    }
+    
     State.activeDate = newDate;
     MapManager.updateMapColors();
 });
