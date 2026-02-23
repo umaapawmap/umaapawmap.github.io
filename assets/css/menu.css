@@ -1,0 +1,90 @@
+#typhoon-selector {
+    margin: 10px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-sizing: border-box; 
+    overflow-x: hidden;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#year-select {
+    width: 100%;
+    padding: 10px;
+    background-color: #0b5a8f;
+    color: #fff;
+    border: 1px solid #444;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+}
+
+#year-select:focus {
+    border-color: #0e71b3;
+}
+
+#typhoon-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: calc(100vh - 400px); 
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #555 transparent;
+}
+
+.typhoon-btn {
+    width: 100%;
+    display: block;
+    text-align: left;
+    padding: 10px 12px;
+    margin-bottom: 5px;
+    background: #0b5a8f;
+    color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all 0.2s ease;
+}
+
+.typhoon-btn:hover {
+    background: #0e71b3;
+    border-color: #555;
+    color: #fff;
+    padding-left: 15px;
+}
+
+.typhoon-btn:active {
+    background: #007bff;
+    border-color: #007bff;
+}
+
+#typhoon-list::-webkit-scrollbar {
+    width: 5px;
+}
+
+#typhoon-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#typhoon-list::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 10px;
+}
+
+#typhoon-list::-webkit-scrollbar-thumb:hover {
+    background: #666;
+}

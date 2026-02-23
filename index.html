@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="assets/css/layout.css" />
         <link rel="stylesheet" href="assets/css/components.css" />
         <link rel="stylesheet" href="assets/css/visualizer.css" />
+        <link rel="stylesheet" href="assets/css/menu.css" />
     </head>
     <body>
         <div id="app">
@@ -20,7 +21,7 @@
             <header class="main-header">
                 <button id="menu-toggle">☰</button>
                 <div class="logo">UMAAPAW Map</div>
-                <div id="loading-spinner" class="spinner hidden"></div> 
+                <div id="loading-spinner" class="spinner hidden"></div>
             </header>
 
             <!--Sidebar-->
@@ -36,7 +37,18 @@
                         <li><a href="#">Emergency Contacts</a></li>
                         <li><a href="#">Report Flood</a></li>-->
                         <li><a href="#">Show Buildings</a></li>
-                        <li><a href="#">View Typhoons</a></li>
+                        <li>
+                            <a href="#" id="view-typhoons-link"
+                                >View Typhoons</a
+                            >
+                        </li>
+
+                        <div id="typhoon-selector" class="hidden">
+                            <select id="year-select">
+                                <option value="">Select Year</option>
+                            </select>
+                            <ul id="typhoon-list"></ul>
+                        </div>
                     </ul>
                 </nav>
 
@@ -83,7 +95,7 @@
         <!--Info panel-->
         <div id="info-panel" class="info-panel hidden">
             <h2 id="info-title"></h2>
-            <p id="info-height">Loading height...</p> 
+            <p id="info-height">Loading height...</p>
             <div class="info-actions">
                 <button id="visualize-flood-btn">Visualize Flood Height</button>
             </div>
@@ -141,5 +153,6 @@
         <script type="module" src="scripts/timeline.js"></script>
         <script type="module" src="scripts/calendar.js"></script>
         <script type="module" src="scripts/visualizer.js"></script>
+        <script type="module" src="scripts/typhoon.js"></script>
     </body>
 </html>

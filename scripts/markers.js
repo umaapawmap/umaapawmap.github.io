@@ -1,7 +1,7 @@
 export const MarkerManager = {
     async addHospitals(map) {
         try {
-            const response = await fetch("../data/hospitals.json");
+            const response = await fetch("./data/hospitals.json");
             const hospitals = await response.json();
 
             const hospitalIcon = L.icon({

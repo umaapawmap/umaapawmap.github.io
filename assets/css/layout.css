@@ -1,3 +1,7 @@
+.hidden {
+    display: none !important;
+}
+
 .main-header {
     position: absolute;
     top: 0;

@@ -14,38 +14,39 @@ export function calculateFloodHeight(precipitation) {
 }
 
 export async function fetchRainfallData(lat, lng, date) {
-    const dateStr = date.toISOString().split('T')[0];
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, '0');
+    const d = String(date.getDate()).padStart(2, '0');
+    const dateStr = `${y}-${m}-${d}`;
+    
     const cacheKey = `${lat}-${lng}-${dateStr}`;
-
     if (cache.has(cacheKey)) return cache.get(cacheKey);
 
     const today = new Date();
-    const twoDaysAgo = new Date();
+    today.setHours(0, 0, 0, 0);
+    const checkDate = new Date(date);
+    checkDate.setHours(0, 0, 0, 0);
+
+    const twoDaysAgo = new Date(today);
     twoDaysAgo.setDate(today.getDate() - 2);
 
-    const isHistorical = date < twoDaysAgo;
+    const isHistorical = checkDate < twoDaysAgo;
     
     const baseUrl = isHistorical 
         ? "https://archive-api.open-meteo.com/v1/archive" 
         : "https://api.open-meteo.com/v1/forecast";
 
-    const params = isHistorical
-        ? `&start_date=${dateStr}&end_date=${dateStr}`
-        : `&past_days=2&forecast_days=3`;
-
-    const url = `${baseUrl}?latitude=${lat}&longitude=${lng}&daily=precipitation_sum&timezone=Asia%2FSingapore${params}`;
+    const url = `${baseUrl}?latitude=${lat}&longitude=${lng}&daily=precipitation_sum&timezone=Asia%2FSingapore&start_date=${dateStr}&end_date=${dateStr}`;
 
     try {
         const response = await fetch(url);
         const data = await response.json();
 
-        if (!data?.daily?.precipitation_sum) return 0;
+        if (!data?.daily?.precipitation_sum || data.daily.precipitation_sum.length === 0) return 0;
 
-        const rainfall = isHistorical 
-            ? data.daily.precipitation_sum[0] 
-            : data.daily.precipitation_sum[data.daily.time.indexOf(dateStr)];
-
+        const rainfall = data.daily.precipitation_sum[0];
         const floodHeight = calculateFloodHeight(rainfall || 0);
+        console.log(`${date.getDate()} ${rainfall}`)
         cache.set(cacheKey, floodHeight);
         return floodHeight;
     } catch (error) {

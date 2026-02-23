@@ -2,6 +2,7 @@ import { MapManager } from "./map.js";
 import { Timeline } from "./timeline.js";
 import { Calendar } from "./calendar.js";
 import { MarkerManager } from "./markers.js";
+import { TyphoonNav } from "./typhoon.js";
 
 async function bootstrap() {
     try {
@@ -12,6 +13,8 @@ async function bootstrap() {
             fetch("../data/barangays.geojson").then(r => r.json())
         ]);
 
+        Timeline.init();
+
         const map = MapManager.create(config);
         MapManager.addBaseLayer(map);
         MarkerManager.addHospitals(map);
@@ -19,9 +22,15 @@ async function bootstrap() {
 
         Timeline.subscribe(newDate => {
             if (calendarInput) {
-                calendarInput.value = newDate.toISOString().split("T")[0];
+                // FIXED: Using local date instead of UTC ISO string
+                const y = newDate.getFullYear();
+                const m = String(newDate.getMonth() + 1).padStart(2, '0');
+                const d = String(newDate.getDate()).padStart(2, '0');
+                calendarInput.value = `${y}-${m}-${d}`;
             }
         });
+
+        TyphoonNav.init();
     } catch (err) {
         console.error("App failed:", err);
     }
