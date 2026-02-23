@@ -43,7 +43,11 @@ export const MapManager = {
                 const layer = State.selectedLayer;
                 const { lat, lng } = layer.getBounds().getCenter();
 
-                const height = await fetchRainfallData(lat, lng, State.activeDate);
+                const height = await fetchRainfallData(
+                    lat,
+                    lng,
+                    State.activeDate
+                );
                 const color = getFloodColor(height);
 
                 layer.setStyle({
@@ -63,18 +67,39 @@ export const MapManager = {
     async updateMapColors() {
         if (!geoJsonLayer) return;
 
+        const spinner = document.getElementById("loading-spinner");
+        if (spinner) spinner.classList.remove("hidden");
+        
         const promises = [];
 
         geoJsonLayer.eachLayer(layer => {
             const { lat, lng } = layer.getBounds().getCenter();
-            
-            const task = fetchRainfallData(lat, lng, State.activeDate).then(height => ({
-                layer,
-                color: getFloodColor(height)
-            }));
+
+            const task = fetchRainfallData(lat, lng, State.activeDate).then(
+                height => ({
+                    layer,
+                    color: getFloodColor(height)
+                })
+            );
 
             promises.push(task);
         });
+        
+        try {
+        const updates = await Promise.all(promises);
+        updates.forEach(({ layer, color }) => {
+            layer.setStyle({
+                fillColor: color,
+                color: color,
+                fillOpacity: 0.4
+            });
+        });
+    } catch (err) {
+        console.error(err);
+    } finally {
+        // 2. Hide it when all promises are done
+        if (spinner) spinner.classList.add("hidden"); 
+    }
 
         const updates = await Promise.all(promises);
 
