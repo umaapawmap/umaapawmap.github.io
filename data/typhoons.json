@@ -1,0 +1,2303 @@
+{
+  "Emong 2001": {
+    "intl_name": "Chebi",
+    "start": [
+      2001,
+      6,
+      19
+    ],
+    "end": [
+      2001,
+      6,
+      25
+    ]
+  },
+  "Feria": {
+    "intl_name": "Utor 2001",
+    "start": [
+      2001,
+      6,
+      30
+    ],
+    "end": [
+      2001,
+      7,
+      7
+    ]
+  },
+  "Kiko 2001": {
+    "intl_name": "Nari 2001",
+    "start": [
+      2001,
+      9,
+      5
+    ],
+    "end": [
+      2001,
+      9,
+      21
+    ]
+  },
+  "Nanang": {
+    "intl_name": "Lingling 2001",
+    "start": [
+      2001,
+      11,
+      5
+    ],
+    "end": [
+      2001,
+      11,
+      12
+    ]
+  },
+  "Basyang 2002": {
+    "intl_name": "Mitag 2002",
+    "start": [
+      2002,
+      2,
+      26
+    ],
+    "end": [
+      2002,
+      3,
+      9
+    ]
+  },
+  "Florita 2002": {
+    "intl_name": "Rammasun 2002",
+    "start": [
+      2002,
+      6,
+      26
+    ],
+    "end": [
+      2002,
+      7,
+      7
+    ]
+  },
+  "Inday 2002": {
+    "intl_name": "Halong",
+    "start": [
+      2002,
+      7,
+      5
+    ],
+    "end": [
+      2002,
+      7,
+      19
+    ]
+  },
+  "Duanding": {
+    "intl_name": "Megi 2004",
+    "start": [
+      2004,
+      8,
+      13
+    ],
+    "end": [
+      2004,
+      8,
+      22
+    ]
+  },
+  "Unding": {
+    "intl_name": "Muifa 2004",
+    "start": [
+      2004,
+      11,
+      13
+    ],
+    "end": [
+      2004,
+      11,
+      26
+    ]
+  },
+  "Yoyong": {
+    "intl_name": "Nanmadol 2004",
+    "start": [
+      2004,
+      11,
+      28
+    ],
+    "end": [
+      2004,
+      12,
+      4
+    ]
+  },
+  "Labuyo 2005": {
+    "intl_name": "Damrey 2005",
+    "start": [
+      2005,
+      9,
+      19
+    ],
+    "end": [
+      2005,
+      9,
+      28
+    ]
+  },
+  "Caloy 2006": {
+    "intl_name": "Chanchu",
+    "start": [
+      2006,
+      5,
+      7
+    ],
+    "end": [
+      2006,
+      5,
+      19
+    ]
+  },
+  "Milenyo": {
+    "intl_name": "Xangsane",
+    "start": [
+      2006,
+      9,
+      25
+    ],
+    "end": [
+      2006,
+      10,
+      2
+    ]
+  },
+  "Reming": {
+    "intl_name": "Durian",
+    "start": [
+      2006,
+      11,
+      24
+    ],
+    "end": [
+      2006,
+      12,
+      9
+    ]
+  },
+  "Seniang": {
+    "intl_name": "Utor 2006",
+    "start": [
+      2006,
+      12,
+      6
+    ],
+    "end": [
+      2006,
+      12,
+      15
+    ]
+  },
+  "Frank": {
+    "intl_name": "Fengshen",
+    "start": [
+      2008,
+      6,
+      17
+    ],
+    "end": [
+      2008,
+      6,
+      27
+    ]
+  },
+  "Kiko 2009": {
+    "intl_name": "Morakot",
+    "start": [
+      2009,
+      8,
+      2
+    ],
+    "end": [
+      2009,
+      8,
+      13
+    ]
+  },
+  "Ondoy": {
+    "intl_name": "Ketsana",
+    "start": [
+      2009,
+      9,
+      25
+    ],
+    "end": [
+      2009,
+      9,
+      30
+    ]
+  },
+  "Pepeng": {
+    "intl_name": "Parma",
+    "start": [
+      2009,
+      9,
+      27
+    ],
+    "end": [
+      2009,
+      10,
+      14
+    ]
+  },
+  "Juan": {
+    "intl_name": "Megi 2010",
+    "start": [
+      2010,
+      10,
+      11
+    ],
+    "end": [
+      2010,
+      10,
+      24
+    ]
+  },
+  "Mina": {
+    "intl_name": "Nanmadol 2011",
+    "start": [
+      2011,
+      8,
+      21
+    ],
+    "end": [
+      2011,
+      8,
+      31
+    ]
+  },
+  "Sendong": {
+    "intl_name": "Washi",
+    "start": [
+      2011,
+      12,
+      11
+    ],
+    "end": [
+      2011,
+      12,
+      19
+    ]
+  },
+  "Ambo 2012": {
+    "intl_name": "Mawar 2012",
+    "start": [
+      2012,
+      5,
+      31
+    ],
+    "end": [
+      2012,
+      6,
+      13
+    ]
+  },
+  "Butchoy 2012": {
+    "intl_name": "Guchol 2012",
+    "start": [
+      2012,
+      6,
+      10
+    ],
+    "end": [
+      2012,
+      6,
+      22
+    ]
+  },
+  "Carina 2012": {
+    "intl_name": "Talim 2012",
+    "start": [
+      2012,
+      6,
+      16
+    ],
+    "end": [
+      2012,
+      6,
+      21
+    ]
+  },
+  "Dindo 2012": {
+    "intl_name": "Doksuri 2012",
+    "start": [
+      2012,
+      6,
+      25
+    ],
+    "end": [
+      2012,
+      6,
+      30
+    ]
+  },
+  "Ferdie 2012": {
+    "intl_name": "Vicente",
+    "start": [
+      2012,
+      7,
+      18
+    ],
+    "end": [
+      2012,
+      7,
+      25
+    ]
+  },
+  "Gener 2012": {
+    "intl_name": "Saola 2012",
+    "start": [
+      2012,
+      7,
+      26
+    ],
+    "end": [
+      2012,
+      8,
+      5
+    ]
+  },
+  "Helen 2012": {
+    "intl_name": "Kai-tak 2012",
+    "start": [
+      2012,
+      8,
+      11
+    ],
+    "end": [
+      2012,
+      8,
+      18
+    ]
+  },
+  "Igme 2012": {
+    "intl_name": "Tembin 2012",
+    "start": [
+      2012,
+      8,
+      17
+    ],
+    "end": [
+      2012,
+      9,
+      1
+    ]
+  },
+  "Julian 2012": {
+    "intl_name": "Bolaven",
+    "start": [
+      2012,
+      8,
+      18
+    ],
+    "end": [
+      2012,
+      9,
+      1
+    ]
+  },
+  "Karen 2012": {
+    "intl_name": "Sanba",
+    "start": [
+      2012,
+      9,
+      10
+    ],
+    "end": [
+      2012,
+      9,
+      18
+    ]
+  },
+  "Lawin 2012": {
+    "intl_name": "Jelawat 2012",
+    "start": [
+      2012,
+      9,
+      19
+    ],
+    "end": [
+      2012,
+      10,
+      3
+    ]
+  },
+  "Marce": {
+    "intl_name": "Gaemi 2012",
+    "start": [
+      2012,
+      9,
+      29
+    ],
+    "end": [
+      2012,
+      10,
+      7
+    ]
+  },
+  "Nina": {
+    "intl_name": "Prapiroon 2012",
+    "start": [
+      2012,
+      10,
+      5
+    ],
+    "end": [
+      2012,
+      10,
+      23
+    ]
+  },
+  "Pablo": {
+    "intl_name": "Bopha",
+    "start": [
+      2012,
+      11,
+      25
+    ],
+    "end": [
+      2012,
+      12,
+      9
+    ]
+  },
+  "Dante 2013": {
+    "intl_name": "Yagi 2013",
+    "start": [
+      2013,
+      6,
+      6
+    ],
+    "end": [
+      2013,
+      6,
+      16
+    ]
+  },
+  "Fabian 2013": {
+    "intl_name": "Bebinca 2013",
+    "start": [
+      2013,
+      6,
+      19
+    ],
+    "end": [
+      2013,
+      6,
+      24
+    ]
+  },
+  "Gorio 2013": {
+    "intl_name": "Rumbia",
+    "start": [
+      2013,
+      6,
+      27
+    ],
+    "end": [
+      2013,
+      7,
+      2
+    ]
+  },
+  "Huaning 2013": {
+    "intl_name": "Soulik 2013",
+    "start": [
+      2013,
+      7,
+      6
+    ],
+    "end": [
+      2013,
+      7,
+      14
+    ]
+  },
+  "Isang 2013": {
+    "intl_name": "Cimaron 2013",
+    "start": [
+      2013,
+      7,
+      14
+    ],
+    "end": [
+      2013,
+      7,
+      19
+    ]
+  },
+  "Jolina 2013": {
+    "intl_name": "Jebi 2013",
+    "start": [
+      2013,
+      7,
+      28
+    ],
+    "end": [
+      2013,
+      8,
+      3
+    ]
+  },
+  "Labuyo 2013": {
+    "intl_name": "Utor 2013",
+    "start": [
+      2013,
+      8,
+      8
+    ],
+    "end": [
+      2013,
+      8,
+      18
+    ]
+  },
+  "Maring 2013": {
+    "intl_name": "Trami 2013",
+    "start": [
+      2013,
+      8,
+      16
+    ],
+    "end": [
+      2013,
+      8,
+      24
+    ]
+  },
+  "Odette 2013": {
+    "intl_name": "Usagi 2013",
+    "start": [
+      2013,
+      9,
+      16
+    ],
+    "end": [
+      2013,
+      9,
+      24
+    ]
+  },
+  "Quedan 2013": {
+    "intl_name": "Fitow",
+    "start": [
+      2013,
+      9,
+      29
+    ],
+    "end": [
+      2013,
+      10,
+      7
+    ]
+  },
+  "Ramil 2013": {
+    "intl_name": "Danas 2013",
+    "start": [
+      2013,
+      10,
+      1
+    ],
+    "end": [
+      2013,
+      10,
+      9
+    ]
+  },
+  "Santi": {
+    "intl_name": "Nari 2013",
+    "start": [
+      2013,
+      10,
+      8
+    ],
+    "end": [
+      2013,
+      10,
+      16
+    ]
+  },
+  "Tino 2013": {
+    "intl_name": "Wipha",
+    "start": [
+      2013,
+      10,
+      9
+    ],
+    "end": [
+      2013,
+      10,
+      18
+    ]
+  },
+  "Viring": {
+    "intl_name": "Krosa",
+    "start": [
+      2013,
+      10,
+      27
+    ],
+    "end": [
+      2013,
+      11,
+      4
+    ]
+  },
+  "Yolanda": {
+    "intl_name": "Haiyan",
+    "start": [
+      2013,
+      11,
+      2
+    ],
+    "end": [
+      2013,
+      11,
+      11
+    ]
+  },
+  "Agaton 2014": {
+    "intl_name": "Kajiki",
+    "start": [
+      2014,
+      1,
+      29
+    ],
+    "end": [
+      2014,
+      2,
+      1
+    ]
+  },
+  "Florita 2014": {
+    "intl_name": "Neoguri 2014",
+    "start": [
+      2014,
+      7,
+      2
+    ],
+    "end": [
+      2014,
+      7,
+      13
+    ]
+  },
+  "Glenda": {
+    "intl_name": "Rammasun 2014",
+    "start": [
+      2014,
+      7,
+      9
+    ],
+    "end": [
+      2014,
+      7,
+      20
+    ]
+  },
+  "Luis 2014": {
+    "intl_name": "Kalmaegi 2014",
+    "start": [
+      2014,
+      9,
+      10
+    ],
+    "end": [
+      2014,
+      9,
+      17
+    ]
+  },
+  "Mario": {
+    "intl_name": "Fung-wong 2014",
+    "start": [
+      2014,
+      9,
+      17
+    ],
+    "end": [
+      2014,
+      9,
+      25
+    ]
+  },
+  "Paeng 2014": {
+    "intl_name": "Phanfone 2014",
+    "start": [
+      2014,
+      9,
+      27
+    ],
+    "end": [
+      2014,
+      10,
+      8
+    ]
+  },
+  "Ompong 2014": {
+    "intl_name": "Vongfong 2014",
+    "start": [
+      2014,
+      10,
+      1
+    ],
+    "end": [
+      2014,
+      10,
+      16
+    ]
+  },
+  "Ruby": {
+    "intl_name": "Hagupit 2014",
+    "start": [
+      2014,
+      11,
+      30
+    ],
+    "end": [
+      2014,
+      12,
+      12
+    ]
+  },
+  "Amang": {
+    "intl_name": "Mekkhala 2015",
+    "start": [
+      2015,
+      1,
+      12
+    ],
+    "end": [
+      2015,
+      1,
+      20
+    ]
+  },
+  "Betty 2015": {
+    "intl_name": "Bavi 2015",
+    "start": [
+      2015,
+      3,
+      10
+    ],
+    "end": [
+      2015,
+      3,
+      21
+    ]
+  },
+  "Chedeng 2015": {
+    "intl_name": "Maysak 2015",
+    "start": [
+      2015,
+      3,
+      25
+    ],
+    "end": [
+      2015,
+      4,
+      7
+    ]
+  },
+  "Dodong 2015": {
+    "intl_name": "Noul",
+    "start": [
+      2015,
+      5,
+      2
+    ],
+    "end": [
+      2015,
+      5,
+      16
+    ]
+  },
+  "Egay 2015": {
+    "intl_name": "Linfa",
+    "start": [
+      2015,
+      7,
+      1
+    ],
+    "end": [
+      2015,
+      7,
+      10
+    ]
+  },
+  "Hanna 2015": {
+    "intl_name": "Soudelor",
+    "start": [
+      2015,
+      7,
+      29
+    ],
+    "end": [
+      2015,
+      8,
+      12
+    ]
+  },
+  "Ineng 2015": {
+    "intl_name": "Goni 2015",
+    "start": [
+      2015,
+      8,
+      13
+    ],
+    "end": [
+      2015,
+      8,
+      30
+    ]
+  },
+  "Kabayan 2015": {
+    "intl_name": "Mujigae",
+    "start": [
+      2015,
+      9,
+      30
+    ],
+    "end": [
+      2015,
+      10,
+      5
+    ]
+  },
+  "Lando": {
+    "intl_name": "Koppu",
+    "start": [
+      2015,
+      10,
+      12
+    ],
+    "end": [
+      2015,
+      10,
+      21
+    ]
+  },
+  "Nona": {
+    "intl_name": "Melor",
+    "start": [
+      2015,
+      12,
+      10
+    ],
+    "end": [
+      2015,
+      12,
+      17
+    ]
+  },
+  "Butchoy 2016": {
+    "intl_name": "Nepartak",
+    "start": [
+      2016,
+      7,
+      2
+    ],
+    "end": [
+      2016,
+      7,
+      10
+    ]
+  },
+  "Carina 2016": {
+    "intl_name": "Nida",
+    "start": [
+      2016,
+      7,
+      29
+    ],
+    "end": [
+      2016,
+      8,
+      3
+    ]
+  },
+  "Ferdie 2016": {
+    "intl_name": "Meranti",
+    "start": [
+      2016,
+      9,
+      8
+    ],
+    "end": [
+      2016,
+      9,
+      17
+    ]
+  },
+  "Gener 2016": {
+    "intl_name": "Malakas 2016",
+    "start": [
+      2016,
+      9,
+      11
+    ],
+    "end": [
+      2016,
+      9,
+      20
+    ]
+  },
+  "Helen 2016": {
+    "intl_name": "Megi 2016",
+    "start": [
+      2016,
+      9,
+      21
+    ],
+    "end": [
+      2016,
+      9,
+      29
+    ]
+  },
+  "Julian 2016": {
+    "intl_name": "Aere 2016",
+    "start": [
+      2016,
+      10,
+      4
+    ],
+    "end": [
+      2016,
+      10,
+      14
+    ]
+  },
+  "Karen 2016": {
+    "intl_name": "Sarika",
+    "start": [
+      2016,
+      10,
+      12
+    ],
+    "end": [
+      2016,
+      10,
+      20
+    ]
+  },
+  "Lawin 2016": {
+    "intl_name": "Haima",
+    "start": [
+      2016,
+      10,
+      14
+    ],
+    "end": [
+      2016,
+      10,
+      26
+    ]
+  },
+  "Dante 2017": {
+    "intl_name": "Muifa 2017",
+    "start": [
+      2017,
+      4,
+      22
+    ],
+    "end": [
+      2017,
+      4,
+      29
+    ]
+  },
+  "Emong 2017": {
+    "intl_name": "Nanmadol 2017",
+    "start": [
+      2017,
+      7,
+      1
+    ],
+    "end": [
+      2017,
+      7,
+      8
+    ]
+  },
+  "Fabian 2017": {
+    "intl_name": "Roke 2017",
+    "start": [
+      2017,
+      7,
+      21
+    ],
+    "end": [
+      2017,
+      7,
+      23
+    ]
+  },
+  "Gorio 2017": {
+    "intl_name": "Nesat 2017",
+    "start": [
+      2017,
+      7,
+      25
+    ],
+    "end": [
+      2017,
+      7,
+      31
+    ]
+  },
+  "Jolina 2017": {
+    "intl_name": "Pakhar 2017",
+    "start": [
+      2017,
+      8,
+      24
+    ],
+    "end": [
+      2017,
+      8,
+      28
+    ]
+  },
+  "Lannie 2017": {
+    "intl_name": "Talim 2017",
+    "start": [
+      2017,
+      9,
+      8
+    ],
+    "end": [
+      2017,
+      9,
+      22
+    ]
+  },
+  "Maring 2017": {
+    "intl_name": "Doksuri 2017",
+    "start": [
+      2017,
+      9,
+      10
+    ],
+    "end": [
+      2017,
+      9,
+      16
+    ]
+  },
+  "Odette 2017": {
+    "intl_name": "Khanun 2017",
+    "start": [
+      2017,
+      10,
+      11
+    ],
+    "end": [
+      2017,
+      10,
+      16
+    ]
+  },
+  "Paolo": {
+    "intl_name": "Lan",
+    "start": [
+      2017,
+      10,
+      15
+    ],
+    "end": [
+      2017,
+      10,
+      23
+    ]
+  },
+  "Quedan 2017": {
+    "intl_name": "Saola 2017",
+    "start": [
+      2017,
+      10,
+      19
+    ],
+    "end": [
+      2017,
+      10,
+      29
+    ]
+  },
+  "Ramil 2017": {
+    "intl_name": "Damrey 2017",
+    "start": [
+      2017,
+      10,
+      31
+    ],
+    "end": [
+      2017,
+      11,
+      5
+    ]
+  },
+  "Salome": {
+    "intl_name": "Haikui 2017",
+    "start": [
+      2017,
+      11,
+      7
+    ],
+    "end": [
+      2017,
+      11,
+      14
+    ]
+  },
+  "Urduja": {
+    "intl_name": "Kai-tak 2017",
+    "start": [
+      2017,
+      12,
+      12
+    ],
+    "end": [
+      2017,
+      12,
+      23
+    ]
+  },
+  "Vinta": {
+    "intl_name": "Tembin 2017",
+    "start": [
+      2017,
+      12,
+      20
+    ],
+    "end": [
+      2017,
+      12,
+      26
+    ]
+  },
+  "Caloy 2018": {
+    "intl_name": "Jelawat 2018",
+    "start": [
+      2018,
+      3,
+      23
+    ],
+    "end": [
+      2018,
+      4,
+      2
+    ]
+  },
+  "Domeng 2018": {
+    "intl_name": "Ewiniar 2018",
+    "start": [
+      2018,
+      6,
+      2
+    ],
+    "end": [
+      2018,
+      6,
+      11
+    ]
+  },
+  "Ester": {
+    "intl_name": "Gaemi 2018",
+    "start": [
+      2018,
+      6,
+      13
+    ],
+    "end": [
+      2018,
+      6,
+      21
+    ]
+  },
+  "Florita 2018": {
+    "intl_name": "Prapiroon 2018",
+    "start": [
+      2018,
+      6,
+      27
+    ],
+    "end": [
+      2018,
+      7,
+      5
+    ]
+  },
+  "Gardo": {
+    "intl_name": "Maria",
+    "start": [
+      2018,
+      7,
+      3
+    ],
+    "end": [
+      2018,
+      7,
+      13
+    ]
+  },
+  "Inday 2018": {
+    "intl_name": "Ampil",
+    "start": [
+      2018,
+      7,
+      17
+    ],
+    "end": [
+      2018,
+      7,
+      26
+    ]
+  },
+  "Karding 2018": {
+    "intl_name": "Yagi 2018",
+    "start": [
+      2018,
+      8,
+      6
+    ],
+    "end": [
+      2018,
+      8,
+      16
+    ]
+  },
+  "Maymay": {
+    "intl_name": "Jebi 2018",
+    "start": [
+      2018,
+      8,
+      26
+    ],
+    "end": [
+      2018,
+      9,
+      7
+    ]
+  },
+  "Ompong 2018": {
+    "intl_name": "Mangkhut",
+    "start": [
+      2018,
+      9,
+      6
+    ],
+    "end": [
+      2018,
+      9,
+      17
+    ]
+  },
+  "Neneng 2018": {
+    "intl_name": "Barijat",
+    "start": [
+      2018,
+      9,
+      8
+    ],
+    "end": [
+      2018,
+      9,
+      13
+    ]
+  },
+  "Paeng 2018": {
+    "intl_name": "Trami 2018",
+    "start": [
+      2018,
+      9,
+      20
+    ],
+    "end": [
+      2018,
+      10,
+      3
+    ]
+  },
+  "Rosita": {
+    "intl_name": "Yutu",
+    "start": [
+      2018,
+      10,
+      20
+    ],
+    "end": [
+      2018,
+      11,
+      3
+    ]
+  },
+  "Betty 2019": {
+    "intl_name": "Wutip",
+    "start": [
+      2019,
+      2,
+      18
+    ],
+    "end": [
+      2019,
+      3,
+      2
+    ]
+  },
+  "Dodong 2019": {
+    "intl_name": "Sepat",
+    "start": [
+      2019,
+      6,
+      24
+    ],
+    "end": [
+      2019,
+      7,
+      2
+    ]
+  },
+  "Falcon 2019": {
+    "intl_name": "Danas 2019",
+    "start": [
+      2019,
+      7,
+      14
+    ],
+    "end": [
+      2019,
+      7,
+      23
+    ]
+  },
+  "Hanna 2019": {
+    "intl_name": "Lekima",
+    "start": [
+      2019,
+      8,
+      2
+    ],
+    "end": [
+      2019,
+      8,
+      14
+    ]
+  },
+  "Ineng 2019": {
+    "intl_name": "Bailu",
+    "start": [
+      2019,
+      8,
+      19
+    ],
+    "end": [
+      2019,
+      8,
+      26
+    ]
+  },
+  "Jenny": {
+    "intl_name": "Podul",
+    "start": [
+      2019,
+      8,
+      24
+    ],
+    "end": [
+      2019,
+      8,
+      31
+    ]
+  },
+  "Liwayway": {
+    "intl_name": "Lingling 2019",
+    "start": [
+      2019,
+      8,
+      30
+    ],
+    "end": [
+      2019,
+      9,
+      12
+    ]
+  },
+  "Nimfa": {
+    "intl_name": "Tapah",
+    "start": [
+      2019,
+      9,
+      17
+    ],
+    "end": [
+      2019,
+      9,
+      23
+    ]
+  },
+  "Onyok": {
+    "intl_name": "Mitag 2019",
+    "start": [
+      2019,
+      9,
+      24
+    ],
+    "end": [
+      2019,
+      10,
+      5
+    ]
+  },
+  "Perla": {
+    "intl_name": "Neoguri 2019",
+    "start": [
+      2019,
+      10,
+      15
+    ],
+    "end": [
+      2019,
+      10,
+      22
+    ]
+  },
+  "Quiel": {
+    "intl_name": "Nakri",
+    "start": [
+      2019,
+      11,
+      4
+    ],
+    "end": [
+      2019,
+      11,
+      11
+    ]
+  },
+  "Tisoy": {
+    "intl_name": "Kammuri",
+    "start": [
+      2019,
+      11,
+      24
+    ],
+    "end": [
+      2019,
+      12,
+      6
+    ]
+  },
+  "Ursula": {
+    "intl_name": "Phanfone 2019",
+    "start": [
+      2019,
+      12,
+      19
+    ],
+    "end": [
+      2019,
+      12,
+      29
+    ]
+  },
+  "Ambo 2020": {
+    "intl_name": "Vongfong 2020",
+    "start": [
+      2020,
+      5,
+      8
+    ],
+    "end": [
+      2020,
+      5,
+      18
+    ]
+  },
+  "Butchoy 2020": {
+    "intl_name": "Nuri",
+    "start": [
+      2020,
+      6,
+      8
+    ],
+    "end": [
+      2020,
+      6,
+      14
+    ]
+  },
+  "Dindo 2020": {
+    "intl_name": "Hagupit 2020",
+    "start": [
+      2020,
+      7,
+      30
+    ],
+    "end": [
+      2020,
+      8,
+      12
+    ]
+  },
+  "Enteng 2020": {
+    "intl_name": "Jangmi",
+    "start": [
+      2020,
+      8,
+      6
+    ],
+    "end": [
+      2020,
+      8,
+      14
+    ]
+  },
+  "Gener 2020": {
+    "intl_name": "Mekkhala 2020",
+    "start": [
+      2020,
+      8,
+      8
+    ],
+    "end": [
+      2020,
+      8,
+      12
+    ]
+  },
+  "Helen 2020": {
+    "intl_name": "Higos",
+    "start": [
+      2020,
+      8,
+      16
+    ],
+    "end": [
+      2020,
+      8,
+      20
+    ]
+  },
+  "Igme 2020": {
+    "intl_name": "Bavi 2020",
+    "start": [
+      2020,
+      8,
+      20
+    ],
+    "end": [
+      2020,
+      8,
+      29
+    ]
+  },
+  "Julian 2020": {
+    "intl_name": "Maysak 2020",
+    "start": [
+      2020,
+      8,
+      26
+    ],
+    "end": [
+      2020,
+      9,
+      7
+    ]
+  },
+  "Kristine 2020": {
+    "intl_name": "Haishen",
+    "start": [
+      2020,
+      8,
+      30
+    ],
+    "end": [
+      2020,
+      9,
+      10
+    ]
+  },
+  "Nika 2020": {
+    "intl_name": "Nangka",
+    "start": [
+      2020,
+      10,
+      11
+    ],
+    "end": [
+      2020,
+      10,
+      14
+    ]
+  },
+  "Quinta": {
+    "intl_name": "Molave",
+    "start": [
+      2020,
+      10,
+      21
+    ],
+    "end": [
+      2020,
+      10,
+      29
+    ]
+  },
+  "Rolly": {
+    "intl_name": "Goni 2020",
+    "start": [
+      2020,
+      10,
+      25
+    ],
+    "end": [
+      2020,
+      11,
+      6
+    ]
+  },
+  "Siony": {
+    "intl_name": "Atsani",
+    "start": [
+      2020,
+      10,
+      29
+    ],
+    "end": [
+      2020,
+      11,
+      7
+    ]
+  },
+  "Tonyo": {
+    "intl_name": "Etau",
+    "start": [
+      2020,
+      11,
+      6
+    ],
+    "end": [
+      2020,
+      11,
+      11
+    ]
+  },
+  "Ulysses": {
+    "intl_name": "Vamco",
+    "start": [
+      2020,
+      11,
+      8
+    ],
+    "end": [
+      2020,
+      11,
+      16
+    ]
+  },
+  "Auring": {
+    "intl_name": "Dujuan",
+    "start": [
+      2021,
+      2,
+      14
+    ],
+    "end": [
+      2021,
+      2,
+      23
+    ]
+  },
+  "Dante 2021": {
+    "intl_name": "Choi-wan",
+    "start": [
+      2021,
+      5,
+      28
+    ],
+    "end": [
+      2021,
+      6,
+      6
+    ]
+  },
+  "Fabian 2021": {
+    "intl_name": "In-fa",
+    "start": [
+      2021,
+      7,
+      15
+    ],
+    "end": [
+      2021,
+      7,
+      31
+    ]
+  },
+  "Huaning 2021": {
+    "intl_name": "Lupit",
+    "start": [
+      2021,
+      8,
+      2
+    ],
+    "end": [
+      2021,
+      8,
+      15
+    ]
+  },
+  "Isang 2021": {
+    "intl_name": "Omais",
+    "start": [
+      2021,
+      8,
+      7
+    ],
+    "end": [
+      2021,
+      8,
+      31
+    ]
+  },
+  "Jolina 2021": {
+    "intl_name": "Conson",
+    "start": [
+      2021,
+      9,
+      5
+    ],
+    "end": [
+      2021,
+      9,
+      13
+    ]
+  },
+  "Kiko 2021": {
+    "intl_name": "Chanthu",
+    "start": [
+      2021,
+      9,
+      5
+    ],
+    "end": [
+      2021,
+      9,
+      20
+    ]
+  },
+  "Lannie 2021": {
+    "intl_name": "Mindulle",
+    "start": [
+      2021,
+      9,
+      22
+    ],
+    "end": [
+      2021,
+      10,
+      6
+    ]
+  },
+  "Maring 2021": {
+    "intl_name": "Kompasu",
+    "start": [
+      2021,
+      10,
+      7
+    ],
+    "end": [
+      2021,
+      10,
+      14
+    ]
+  },
+  "Odette 2021": {
+    "intl_name": "Rai",
+    "start": [
+      2021,
+      12,
+      11
+    ],
+    "end": [
+      2021,
+      12,
+      21
+    ]
+  },
+  "Basyang 2022": {
+    "intl_name": "Malakas 2022",
+    "start": [
+      2022,
+      4,
+      6
+    ],
+    "end": [
+      2022,
+      4,
+      18
+    ]
+  },
+  "Agaton 2022": {
+    "intl_name": "Megi 2022",
+    "start": [
+      2022,
+      4,
+      8
+    ],
+    "end": [
+      2022,
+      4,
+      13
+    ]
+  },
+  "Caloy 2022": {
+    "intl_name": "Chaba",
+    "start": [
+      2022,
+      6,
+      28
+    ],
+    "end": [
+      2022,
+      7,
+      7
+    ]
+  },
+  "Domeng 2022": {
+    "intl_name": "Aere 2022",
+    "start": [
+      2022,
+      6,
+      29
+    ],
+    "end": [
+      2022,
+      7,
+      11
+    ]
+  },
+  "Florita 2022": {
+    "intl_name": "Ma-on",
+    "start": [
+      2022,
+      8,
+      20
+    ],
+    "end": [
+      2022,
+      8,
+      26
+    ]
+  },
+  "Inday 2022": {
+    "intl_name": "Muifa 2022",
+    "start": [
+      2022,
+      9,
+      3
+    ],
+    "end": [
+      2022,
+      9,
+      17
+    ]
+  },
+  "Josie": {
+    "intl_name": "Nanmadol 2022",
+    "start": [
+      2022,
+      9,
+      11
+    ],
+    "end": [
+      2022,
+      9,
+      20
+    ]
+  },
+  "Karding 2022": {
+    "intl_name": "Noru",
+    "start": [
+      2022,
+      9,
+      21
+    ],
+    "end": [
+      2022,
+      9,
+      29
+    ]
+  },
+  "Luis 2022": {
+    "intl_name": "Roke 2022",
+    "start": [
+      2022,
+      9,
+      26
+    ],
+    "end": [
+      2022,
+      10,
+      5
+    ]
+  },
+  "Neneng 2022": {
+    "intl_name": "Nesat 2022",
+    "start": [
+      2022,
+      10,
+      12
+    ],
+    "end": [
+      2022,
+      10,
+      20
+    ]
+  },
+  "Paeng 2022": {
+    "intl_name": "Nalgae",
+    "start": [
+      2022,
+      10,
+      26
+    ],
+    "end": [
+      2022,
+      11,
+      3
+    ]
+  },
+  "Queenie": {
+    "intl_name": "Banyan",
+    "start": [
+      2022,
+      10,
+      28
+    ],
+    "end": [
+      2022,
+      11,
+      3
+    ]
+  },
+  "Rosal": {
+    "intl_name": "Pakhar 2022",
+    "start": [
+      2022,
+      12,
+      8
+    ],
+    "end": [
+      2022,
+      12,
+      13
+    ]
+  },
+  "Betty 2023": {
+    "intl_name": "Mawar 2023",
+    "start": [
+      2023,
+      5,
+      18
+    ],
+    "end": [
+      2023,
+      6,
+      3
+    ]
+  },
+  "Chedeng 2023": {
+    "intl_name": "Guchol 2023",
+    "start": [
+      2023,
+      6,
+      4
+    ],
+    "end": [
+      2023,
+      6,
+      17
+    ]
+  },
+  "Dodong 2023": {
+    "intl_name": "Talim 2023",
+    "start": [
+      2023,
+      7,
+      13
+    ],
+    "end": [
+      2023,
+      7,
+      19
+    ]
+  },
+  "Egay 2023": {
+    "intl_name": "Doksuri 2023",
+    "start": [
+      2023,
+      7,
+      20
+    ],
+    "end": [
+      2023,
+      7,
+      31
+    ]
+  },
+  "Falcon 2023": {
+    "intl_name": "Khanun 2023",
+    "start": [
+      2023,
+      7,
+      26
+    ],
+    "end": [
+      2023,
+      8,
+      11
+    ]
+  },
+  "Goring": {
+    "intl_name": "Saola 2023",
+    "start": [
+      2023,
+      8,
+      22
+    ],
+    "end": [
+      2023,
+      9,
+      4
+    ]
+  },
+  "Hanna 2023": {
+    "intl_name": "Haikui 2023",
+    "start": [
+      2023,
+      8,
+      27
+    ],
+    "end": [
+      2023,
+      9,
+      10
+    ]
+  },
+  "Kabayan 2023": {
+    "intl_name": "Jelawat 2023",
+    "start": [
+      2023,
+      12,
+      14
+    ],
+    "end": [
+      2023,
+      12,
+      18
+    ]
+  },
+  "Aghon": {
+    "intl_name": "Ewiniar 2024",
+    "start": [
+      2024,
+      5,
+      20
+    ],
+    "end": [
+      2024,
+      6,
+      2
+    ]
+  },
+  "Butchoy 2024": {
+    "intl_name": "Prapiroon 2024",
+    "start": [
+      2024,
+      7,
+      15
+    ],
+    "end": [
+      2024,
+      7,
+      25
+    ]
+  },
+  "Carina 2024": {
+    "intl_name": "Gaemi 2024",
+    "start": [
+      2024,
+      7,
+      19
+    ],
+    "end": [
+      2024,
+      7,
+      28
+    ]
+  },
+  "Enteng 2024": {
+    "intl_name": "Yagi 2024",
+    "start": [
+      2024,
+      8,
+      30
+    ],
+    "end": [
+      2024,
+      9,
+      9
+    ]
+  },
+  "Ferdie 2024": {
+    "intl_name": "Bebinca 2024",
+    "start": [
+      2024,
+      9,
+      8
+    ],
+    "end": [
+      2024,
+      9,
+      18
+    ]
+  },
+  "Helen 2024": {
+    "intl_name": "Soulik 2024",
+    "start": [
+      2024,
+      9,
+      15
+    ],
+    "end": [
+      2024,
+      9,
+      20
+    ]
+  },
+  "Igme 2024": {
+    "intl_name": "Cimaron 2024",
+    "start": [
+      2024,
+      9,
+      23
+    ],
+    "end": [
+      2024,
+      9,
+      30
+    ]
+  },
+  "Kristine 2024": {
+    "intl_name": "Trami 2024",
+    "start": [
+      2024,
+      10,
+      18
+    ],
+    "end": [
+      2024,
+      10,
+      29
+    ]
+  },
+  "Leon": {
+    "intl_name": "Kong-rey",
+    "start": [
+      2024,
+      10,
+      24
+    ],
+    "end": [
+      2024,
+      11,
+      2
+    ]
+  },
+  "Nika 2024": {
+    "intl_name": "Toraji",
+    "start": [
+      2024,
+      11,
+      7
+    ],
+    "end": [
+      2024,
+      11,
+      15
+    ]
+  },
+  "Pepito": {
+    "intl_name": "Man-yi",
+    "start": [
+      2024,
+      11,
+      7
+    ],
+    "end": [
+      2024,
+      11,
+      20
+    ]
+  },
+  "Ofel": {
+    "intl_name": "Usagi 2024",
+    "start": [
+      2024,
+      11,
+      9
+    ],
+    "end": [
+      2024,
+      11,
+      16
+    ]
+  },
+  "Tino 2025": {
+    "intl_name": "Kalmaegi 2025",
+    "start": [
+      2025,
+      11,
+      1
+    ],
+    "end": [
+      2025,
+      11,
+      6
+    ]
+  },
+  "Uwan": {
+    "intl_name": "Fung-wong 2025",
+    "start": [
+      2025,
+      11,
+      4
+    ],
+    "end": [
+      2025,
+      11,
+      13
+    ]
+  },
+  "Basyang 2026": {
+    "intl_name": "Penha",
+    "start": [
+      2026,
+      2,
+      3
+    ],
+    "end": [
+      2026,
+      2,
+      8
+    ]
+  }
+}
