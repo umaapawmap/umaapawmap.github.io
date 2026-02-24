@@ -1,5 +1,5 @@
 import { UI } from "./ui.js";
-import { getFloodData, getFloodColor, calculateFloodHeight } from "./api.js";
+import { getFloodData, getFloodColor, calculateFloodHeight, isDataCached } from "./api.js";
 import { Timeline } from "./timeline.js";
 import { Visualizer } from "./visualizer.js";
 
@@ -38,7 +38,7 @@ export const MapManager = {
         const reset = () => {
             UI.hide();
             if (State.selectedLayer) {
-                this.updateMapColors(); // Refresh to original colors
+                this.updateMapColors();
                 State.selectedLayer = null;
             }
         };
@@ -50,29 +50,29 @@ export const MapManager = {
     async updateMapColors() {
         if (!geoJsonLayer) return;
 
+        let needsLoading = false;
+        geoJsonLayer.eachLayer(layer => {
+            const { lat, lng } = layer.getBounds().getCenter();
+            if (!isDataCached(lat, lng, State.activeDate)) {
+                needsLoading = true;
+            }
+        });
+
         const spinner = document.getElementById("loading-spinner");
-        if (spinner) spinner.classList.remove("hidden");
+        if (needsLoading && spinner) spinner.classList.remove("hidden");
 
         try {
-            const floodConfig = await fetch("./config/flood-config.json").then(
-                r => r.json()
-            );
+            const floodConfig = await fetch("./config/flood-config.json").then(r => r.json());
             const promises = [];
 
             geoJsonLayer.eachLayer(layer => {
                 const { lat, lng } = layer.getBounds().getCenter();
                 const bgyName = layer.feature.properties.ADM4_EN;
 
-                const task = getFloodData(lat, lng, State.activeDate).then(
-                    rain => {
-                        const height = calculateFloodHeight(
-                            rain,
-                            bgyName,
-                            floodConfig
-                        );
-                        return { layer, color: getFloodColor(Number(height)) };
-                    }
-                );
+                const task = getFloodData(lat, lng, State.activeDate).then(rain => {
+                    const height = calculateFloodHeight(rain, bgyName, floodConfig);
+                    return { layer, color: getFloodColor(Number(height)) };
+                });
                 promises.push(task);
             });
 
@@ -94,7 +94,6 @@ export const MapManager = {
     async handleFeatureClick(e, layer, feature) {
         L.DomEvent.stopPropagation(e);
 
-        // Reset previous selection opacity
         if (State.selectedLayer) {
             State.selectedLayer.setStyle({ fillOpacity: 0.6 });
         }
@@ -110,23 +109,17 @@ export const MapManager = {
 
         const heightDisplay = document.getElementById("info-height");
         if (heightDisplay) {
-            heightDisplay.innerHTML = "Calculating...";
+            const dateOptions = { month: "short", day: "numeric", year: "numeric" };
+            const formattedDate = State.activeDate.toLocaleDateString("en-US", dateOptions);
+
+            if (!isDataCached(lat, lng, State.activeDate)) {
+                heightDisplay.innerHTML = "Calculating...";
+            }
+
             try {
-                const floodConfig = await fetch(
-                    "./config/flood-config.json"
-                ).then(r => r.json());
+                const floodConfig = await fetch("./config/flood-config.json").then(r => r.json());
                 const rain = await getFloodData(lat, lng, State.activeDate);
                 const height = calculateFloodHeight(rain, bgyName, floodConfig);
-
-                const dateOptions = {
-                    month: "short",
-                    day: "numeric",
-                    year: "numeric"
-                };
-                const formattedDate = State.activeDate.toLocaleDateString(
-                    "en-US",
-                    dateOptions
-                );
 
                 heightDisplay.innerHTML = `
                     <div style="margin-bottom: 4px;">Date: <strong>${formattedDate}</strong></div>

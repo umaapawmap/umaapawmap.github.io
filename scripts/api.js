@@ -57,3 +57,11 @@ export async function getFloodData(lat, lng, date) {
         return 0;
     }
 }
+
+export function isDataCached(lat, lng, date) {
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, '0');
+    const d = String(date.getDate()).padStart(2, '0');
+    const cacheKey = `${lat}-${lng}-${y}-${m}-${d}`;
+    return cache.has(cacheKey);
+}

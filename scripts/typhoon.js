@@ -2,8 +2,6 @@ import { Timeline } from "./timeline.js";
 
 export const TyphoonNav = {
     async init() {
-        console.log("TyphoonNav: Initializing...");
-
         const link = document.getElementById("view-typhoons-link");
         const selector = document.getElementById("typhoon-selector");
         const yearSelect = document.getElementById("year-select");

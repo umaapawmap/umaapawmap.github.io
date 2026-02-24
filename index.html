@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <title>UMAAPAW Map</title>
+        <title>uMAPaw - Dashboard</title>
         <link
             rel="stylesheet"
             href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -20,8 +20,7 @@
             <!--Header-->
             <header class="main-header">
                 <button id="menu-toggle">☰</button>
-                <div class="logo">UMAAPAW Map</div>
-                <div id="loading-spinner" class="spinner hidden"></div>
+                <div class="logo">UMAPAW</div>
             </header>
 
             <!--Sidebar-->
@@ -33,7 +32,6 @@
                 <nav>
                     <ul>
                         <!--<li><a href="#">Current Status</a></li>
-                        <li><a href="#">Historical Data</a></li>
                         <li><a href="#">Emergency Contacts</a></li>
                         <li><a href="#">Report Flood</a></li>-->
                         <li><a href="#">Show Buildings</a></li>
@@ -89,6 +87,8 @@
             </div>
         </div>
 
+        <div id="loading-spinner" class="spinner hidden"></div>
+
         <!--Map-->
         <div id="map"></div>
 
@@ -124,7 +124,8 @@
                 </div>
             </div>
         </div>
-
+        
+        <!--Color Coding Legend-->
         <div id="map-legend" class="map-legend">
             <button id="legend-toggle" class="legend-toggle-btn">×</button>
 
