@@ -1,4 +1,4 @@
-import { fetchRainfallData } from "./api.js";
+import { getFloodData, calculateFloodHeight } from "./api.js";
 
 const visWindow = document.getElementById('flood-visualizer');
 const waterFill = document.getElementById('water-fill');
@@ -16,17 +16,20 @@ export const Visualizer = {
         }
     },
 
-    async open(lat, lng, date) {
+    async open(lat, lng, date, bgyName) {
         this.resetWater();
         visWindow.classList.remove('hidden');
 
-        const height = await fetchRainfallData(lat, lng, date);
+        const floodConfig = await fetch("./config/flood-config.json").then(r => r.json());
+        const rain = await getFloodData(lat, lng, date);
+        const height = calculateFloodHeight(rain, bgyName, floodConfig);
         
         setTimeout(() => {
             waterFill.style.transition = 'height 1.2s ease-out';
             this.syncWater(height);
         }, 50);
     },
+
 
     syncWater(m) {
         const lines = document.querySelectorAll('.ruler-line');

@@ -1,5 +1,5 @@
 import { UI } from "./ui.js";
-import { fetchRainfallData, getFloodColor } from "./api.js";
+import { getFloodData, getFloodColor, calculateFloodHeight } from "./api.js";
 import { Timeline } from "./timeline.js";
 import { Visualizer } from "./visualizer.js";
 
@@ -29,33 +29,16 @@ export const MapManager = {
         geoJsonLayer = L.geoJSON(data, {
             style: { color: "#333333", weight: 1, fillOpacity: 0.8 },
             onEachFeature: (feature, l) => {
-                l.on("click", e =>
-                    this.handleFeatureClick(e, l, feature, geoJsonLayer)
-                );
+                l.on("click", e => this.handleFeatureClick(e, l, feature));
             }
         }).addTo(map);
 
         this.updateMapColors();
 
-        const reset = async () => {
+        const reset = () => {
             UI.hide();
             if (State.selectedLayer) {
-                const layer = State.selectedLayer;
-                const { lat, lng } = layer.getBounds().getCenter();
-
-                const height = await fetchRainfallData(
-                    lat,
-                    lng,
-                    State.activeDate
-                );
-                const color = getFloodColor(height);
-
-                layer.setStyle({
-                    fillColor: color,
-                    color: color,
-                    fillOpacity: 0.4
-                });
-
+                this.updateMapColors(); // Refresh to original colors
                 State.selectedLayer = null;
             }
         };
@@ -70,94 +53,94 @@ export const MapManager = {
         const spinner = document.getElementById("loading-spinner");
         if (spinner) spinner.classList.remove("hidden");
 
-        const promises = [];
-
-        geoJsonLayer.eachLayer(layer => {
-            const { lat, lng } = layer.getBounds().getCenter();
-
-            const task = fetchRainfallData(lat, lng, State.activeDate).then(
-                height => ({
-                    layer,
-                    color: getFloodColor(height)
-                })
-            );
-
-            promises.push(task);
-        });
-
         try {
+            const floodConfig = await fetch("./config/flood-config.json").then(
+                r => r.json()
+            );
+            const promises = [];
+
+            geoJsonLayer.eachLayer(layer => {
+                const { lat, lng } = layer.getBounds().getCenter();
+                const bgyName = layer.feature.properties.ADM4_EN;
+
+                const task = getFloodData(lat, lng, State.activeDate).then(
+                    rain => {
+                        const height = calculateFloodHeight(
+                            rain,
+                            bgyName,
+                            floodConfig
+                        );
+                        return { layer, color: getFloodColor(Number(height)) };
+                    }
+                );
+                promises.push(task);
+            });
+
             const updates = await Promise.all(promises);
             updates.forEach(({ layer, color }) => {
                 layer.setStyle({
                     fillColor: color,
                     color: color,
-                    fillOpacity: 0.4
+                    fillOpacity: 0.6
                 });
             });
         } catch (err) {
-            console.error(err);
+            console.error("Map update failed:", err);
         } finally {
             if (spinner) spinner.classList.add("hidden");
         }
-
-        const updates = await Promise.all(promises);
-
-        updates.forEach(({ layer, color }) => {
-            layer.setStyle({
-                fillColor: color,
-                color: color,
-                fillOpacity: 0.4
-            });
-        });
     },
 
-    async handleFeatureClick(e, layer, feature, parent) {
+    async handleFeatureClick(e, layer, feature) {
         L.DomEvent.stopPropagation(e);
 
+        // Reset previous selection opacity
         if (State.selectedLayer) {
-            const prev = State.selectedLayer;
-            const { lat, lng } = prev.getBounds().getCenter();
-            const h = await fetchRainfallData(lat, lng, State.activeDate);
-            const c = getFloodColor(h);
-            prev.setStyle({ fillColor: c, color: c, fillOpacity: 0.4 });
+            State.selectedLayer.setStyle({ fillOpacity: 0.6 });
         }
 
-        layer.setStyle({ fillOpacity: 0.5, weight: 1 });
+        layer.setStyle({ fillOpacity: 0.9, weight: 1 });
         State.selectedLayer = layer;
 
         const { lat, lng } = layer.getBounds().getCenter();
         const { clientX, clientY } = e.originalEvent;
+        const bgyName = feature.properties.ADM4_EN;
 
-        UI.show(feature.properties.ADM4_EN, clientX, clientY);
+        UI.show(bgyName, clientX, clientY);
 
         const heightDisplay = document.getElementById("info-height");
-        
         if (heightDisplay) {
-            heightDisplay.innerHTML = "Loading...";
+            heightDisplay.innerHTML = "Calculating...";
             try {
-                const rawHeight = await fetchRainfallData(
-                    lat,
-                    lng,
-                    State.activeDate
-                );
-                const height = Number(rawHeight);
+                const floodConfig = await fetch(
+                    "./config/flood-config.json"
+                ).then(r => r.json());
+                const rain = await getFloodData(lat, lng, State.activeDate);
+                const height = calculateFloodHeight(rain, bgyName, floodConfig);
 
-                if (isNaN(height)) {
-                    heightDisplay.innerHTML = "Flood Height: 0.0m";
-                } else {
-                    heightDisplay.innerHTML = `Flood Height: <strong>${height.toFixed(
-                        1
-                    )}m</strong>`;
-                }
+                const dateOptions = {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric"
+                };
+                const formattedDate = State.activeDate.toLocaleDateString(
+                    "en-US",
+                    dateOptions
+                );
+
+                heightDisplay.innerHTML = `
+                    <div style="margin-bottom: 4px;">Date: <strong>${formattedDate}</strong></div>
+                    <div style="margin-bottom: 4px;">Rainfall: <strong>${rain}mm</strong></div>
+                    <div>Flood Height: <strong>${height}m</strong></div>
+                `;
             } catch (err) {
-                heightDisplay.innerHTML = "Height unavailable";
-                console.log(`Height unavailable: ${err}`);
+                heightDisplay.innerHTML = "Error";
             }
         }
 
         const vizBtn = document.getElementById("visualize-flood-btn");
         vizBtn.onclick = () => {
-            Visualizer.open(lat, lng, State.activeDate);
+            Visualizer.open(lat, lng, State.activeDate, bgyName);
         };
     }
 };
@@ -167,7 +150,6 @@ Timeline.subscribe(newDate => {
     if (panel && !panel.classList.contains("hidden")) {
         UI.hide();
     }
-    
     State.activeDate = newDate;
     MapManager.updateMapColors();
 });

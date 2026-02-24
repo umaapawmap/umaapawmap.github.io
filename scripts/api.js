@@ -7,13 +7,21 @@ export function getFloodColor(height) {
     return "#e74c3c";
 }
 
-export function calculateFloodHeight(precipitation) {
+export function calculateFloodHeight(precipitation, barangayName, floodConfig) {
     if (precipitation <= 0) return 0;
-    const height = precipitation * 0.05;
+    
+    const config = floodConfig[barangayName] || { 
+        runoffCoefficient: 0.6, 
+        drainageFactor: 0.5 
+    };
+
+    const effectiveRain = precipitation * config.runoffCoefficient;
+    const height = (effectiveRain / 10) * (1 - config.drainageFactor);
+    
     return Math.min(height, 5).toFixed(1);
 }
 
-export async function fetchRainfallData(lat, lng, date) {
+export async function getFloodData(lat, lng, date) {
     const y = date.getFullYear();
     const m = String(date.getMonth() + 1).padStart(2, '0');
     const d = String(date.getDate()).padStart(2, '0');
@@ -42,15 +50,10 @@ export async function fetchRainfallData(lat, lng, date) {
         const response = await fetch(url);
         const data = await response.json();
 
-        if (!data?.daily?.precipitation_sum || data.daily.precipitation_sum.length === 0) return 0;
-
-        const rainfall = data.daily.precipitation_sum[0];
-        const floodHeight = calculateFloodHeight(rainfall || 0);
-        console.log(`${date.getDate()} ${rainfall}`)
-        cache.set(cacheKey, floodHeight);
-        return floodHeight;
-    } catch (error) {
-        console.error(error);
+        const rain = data?.daily?.precipitation_sum?.[0] || 0;
+        cache.set(cacheKey, rain);
+        return rain;
+    } catch (err) {
         return 0;
     }
 }

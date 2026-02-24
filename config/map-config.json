@@ -1,0 +1,9 @@
+{
+    "map": {
+        "center": [14.862697, 120.327579],
+        "minZoom": 12.5,
+        "startZoom": 13,
+        "maxMeters": 10.6,
+        "heightMultiplier": 1
+    }
+}

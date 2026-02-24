@@ -1,0 +1,104 @@
+{
+    "New Ilalim": {
+        "runoffCoefficient": 0.85,
+        "drainageFactor": 0.4,
+        "vulnerability": 1.4,
+        "floodableFraction": 0.22
+    },
+    "Gordon Heights": {
+        "runoffCoefficient": 0.45,
+        "drainageFactor": 0.85,
+        "vulnerability": 0.8,
+        "floodableFraction": 0.1
+    },
+    "East Bajac-bajac": {
+        "runoffCoefficient": 0.92,
+        "drainageFactor": 0.5,
+        "vulnerability": 1.3,
+        "floodableFraction": 0.18
+    },
+    "Barretto": {
+        "runoffCoefficient": 0.75,
+        "drainageFactor": 0.45,
+        "vulnerability": 1.25,
+        "floodableFraction": 0.2
+    },
+    "Santa Rita": {
+        "runoffCoefficient": 0.65,
+        "drainageFactor": 0.6,
+        "vulnerability": 1.15,
+        "floodableFraction": 0.15
+    },
+    "Mabayuan": {
+        "runoffCoefficient": 0.55,
+        "drainageFactor": 0.75,
+        "vulnerability": 0.9,
+        "floodableFraction": 0.12
+    },
+    "Asinan": {
+        "runoffCoefficient": 0.88,
+        "drainageFactor": 0.4,
+        "vulnerability": 1.35,
+        "floodableFraction": 0.25
+    },
+    "Banicain": {
+        "runoffCoefficient": 0.82,
+        "drainageFactor": 0.45,
+        "vulnerability": 1.2,
+        "floodableFraction": 0.2
+    },
+    "West Bajac-bajac": {
+        "runoffCoefficient": 0.9,
+        "drainageFactor": 0.5,
+        "vulnerability": 1.25,
+        "floodableFraction": 0.18
+    },
+    "Old Cabalan": {
+        "runoffCoefficient": 0.5,
+        "drainageFactor": 0.7,
+        "vulnerability": 0.95,
+        "floodableFraction": 0.12
+    },
+    "New Cabalan": {
+        "runoffCoefficient": 0.48,
+        "drainageFactor": 0.75,
+        "vulnerability": 0.9,
+        "floodableFraction": 0.1
+    },
+    "Kalaklan": {
+        "runoffCoefficient": 0.7,
+        "drainageFactor": 0.55,
+        "vulnerability": 1.1,
+        "floodableFraction": 0.15
+    },
+    "New Kababae": {
+        "runoffCoefficient": 0.85,
+        "drainageFactor": 0.45,
+        "vulnerability": 1.25,
+        "floodableFraction": 0.22
+    },
+    "New Kalalake": {
+        "runoffCoefficient": 0.87,
+        "drainageFactor": 0.42,
+        "vulnerability": 1.3,
+        "floodableFraction": 0.24
+    },
+    "Pag-asa": {
+        "runoffCoefficient": 0.8,
+        "drainageFactor": 0.6,
+        "vulnerability": 1.1,
+        "floodableFraction": 0.16
+    },
+    "East Tapinac": {
+        "runoffCoefficient": 0.85,
+        "drainageFactor": 0.55,
+        "vulnerability": 1.15,
+        "floodableFraction": 0.18
+    },
+    "West Tapinac": {
+        "runoffCoefficient": 0.85,
+        "drainageFactor": 0.55,
+        "vulnerability": 1.15,
+        "floodableFraction": 0.18
+    }
+}

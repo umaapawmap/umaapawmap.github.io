@@ -23,7 +23,6 @@ export const TyphoonNav = {
         }
 
         try {
-            console.log("TyphoonNav: Fetching data...");
             const response = await fetch("./data/typhoons.json");
 
             if (!response.ok) {
@@ -31,19 +30,13 @@ export const TyphoonNav = {
             }
 
             const data = await response.json();
-            console.log("TyphoonNav: Data loaded successfully", data);
 
             link.addEventListener("click", e => {
                 e.preventDefault();
                 selector.classList.toggle("hidden");
-                console.log(
-                    "TyphoonNav: Selector toggled. Hidden state:",
-                    selector.classList.contains("hidden")
-                );
             });
 
             const years = Object.keys(data).sort((a, b) => b - a);
-            console.log("TyphoonNav: Years found:", years);
 
             years.forEach(year => {
                 const opt = document.createElement("option");
@@ -54,7 +47,6 @@ export const TyphoonNav = {
 
             yearSelect.addEventListener("change", e => {
                 const year = e.target.value;
-                console.log("TyphoonNav: Year changed to:", year);
                 typhoonList.innerHTML = "";
 
                 if (data[year]) {
@@ -76,9 +68,8 @@ export const TyphoonNav = {
                 }
             });
 
-            console.log("TyphoonNav: Initialization complete.");
         } catch (error) {
-            console.error("TyphoonNav Critical Error:", error);
+            return
         }
     }
 };
